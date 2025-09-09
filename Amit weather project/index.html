@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Weather CAPE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button class="theme-toggle" aria-label="Toggle day/night mode">
+      <span class="icon-sun" aria-hidden="true">☀️</span>
+      <span class="icon-moon" aria-hidden="true">🌙</span>
+    </button>
+    <main>
+      <div class="card animate-card" tabindex="0">
+        <div class="name">Weather CAPE</div>
+        <form class="search" autocomplete="off">
+          <input
+            type="text"
+            placeholder="Enter city name"
+            aria-label="Enter city name"
+            spellcheck="false"
+            required
+          />
+          <button class="search-btn" aria-label="Search">
+            <img src="search.png" alt="Search" />
+          </button>
+        </form>
+        <div class="error" aria-live="polite" style="display: none">
+          <p>Invalid city name</p>
+        </div>
+        <section class="weather" aria-live="polite">
+          <img
+            src="clear.png"
+            alt="Weather icon"
+            class="weather-icon animated-weather"
+          />
+          <h1 class="temp">22°c</h1>
+          <h2 class="city">New York</h2>
+          <div class="divider"></div>
+          <div class="details">
+            <div
+              class="col"
+              data-tooltip="Humidity: The amount of water vapor in the air"
+            >
+              <img src="humidity.png" alt="Humidity" />
+              <div>
+                <p class="humidity">50%</p>
+                <p>Humidity</p>
+              </div>
+            </div>
+            <div
+              class="col"
+              data-tooltip="Wind Speed: How fast the air is moving"
+            >
+              <img src="wind.png" alt="Wind" />
+              <div>
+                <p class="wind">15 km/h</p>
+                <p>Wind Speed</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="appmanipulation.js"></script>
+  </body>
+</html>

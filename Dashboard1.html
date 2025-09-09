@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SB Admin Pro Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="bootstyle.css" />
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+        font-family: "Montserrat", sans-serif;
+      }
+      .dashboard-header {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 4px 16px rgba(0, 123, 255, 0.18);
+        position: relative;
+      }
+      .dashboard-header h1 {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+      }
+      .dashboard-header p {
+        opacity: 0.95;
+        margin-bottom: 0;
+      }
+      .profile-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .profile-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+      }
+      .profile-avatar:hover {
+        box-shadow: 0 4px 16px rgba(0, 123, 255, 0.18);
+      }
+      .dropdown-menu {
+        min-width: 160px;
+      }
+      .notification-bell {
+        position: relative;
+        margin-right: 1.2rem;
+        cursor: pointer;
+      }
+      .notification-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #e25555;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 0.7em;
+        padding: 2px 6px;
+        font-weight: bold;
+        box-shadow: 0 1px 4px rgba(226, 85, 85, 0.18);
+      }
+      .card {
+        border-radius: 18px;
+        box-shadow: 0 2px 24px rgba(0, 0, 0, 0.1),
+          0 1.5px 4px rgba(0, 0, 0, 0.04);
+        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(6px);
+      }
+      .card:hover {
+        transform: translateY(-8px) scale(1.025);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16), 0 3px 8px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.92);
+      }
+      .progress {
+        height: 1.7rem;
+        background: #e9ecef;
+        border-radius: 1rem;
+        overflow: hidden;
+        margin-bottom: 1.1rem;
+        box-shadow: 0 2px 8px rgba(0, 123, 255, 0.07);
+      }
+      .progress-bar {
+        font-weight: 600;
+        font-size: 1rem;
+        transition: width 1.2s cubic-bezier(0.4, 2, 0.6, 1);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 0.8rem;
+        position: relative;
+      }
+      .progress-bar span {
+        color: #fff;
+        font-size: 0.95em;
+        font-weight: 600;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+        position: absolute;
+        right: 0.8rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.2rem;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      .badge {
+        font-size: 0.95em;
+        padding: 0.3em 0.7em;
+        border-radius: 1em;
+      }
+      .list-group-item {
+        border: none;
+        border-radius: 12px;
+        margin-bottom: 0.5rem;
+        transition: background 0.2s, box-shadow 0.2s;
+        background: rgba(245, 247, 250, 0.7);
+      }
+      .list-group-item:hover {
+        background: #f1f3f6;
+        box-shadow: 0 2px 8px rgba(0, 123, 255, 0.08);
+      }
+      .activity-icon {
+        font-size: 1.5rem;
+        padding: 0.7rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer {
+        background: #222;
+        color: #fff;
+        text-align: center;
+        padding: 1.2rem 0 0.7rem 0;
+        border-radius: 18px 18px 0 0;
+        margin-top: 2rem;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+      }
+      .chart-container {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 767px) {
+        .dashboard-header {
+          text-align: center;
+        }
+        .notification-bell {
+          margin-right: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dashboard Header with Avatar and Notification -->
+    <div class="dashboard-header">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1>
+              <i
+                class="bi bi-speedometer2 me-3"
+                data-bs-toggle="tooltip"
+                title="Dashboard"
+              ></i
+              >Dashboard Overview
+            </h1>
+            <p class="lead">
+              Welcome back! Here's what's happening with your projects today.
+            </p>
+          </div>
+          <div class="col-md-4 text-md-end mt-3 mt-md-0">
+            <div class="d-flex align-items-center justify-content-md-end gap-3">
+              <div
+                class="notification-bell"
+                data-bs-toggle="tooltip"
+                title="Notifications"
+              >
+                <i class="bi bi-bell fs-3"></i>
+                <span class="notification-badge">3</span>
+              </div>
+              <input
+                type="date"
+                class="form-control form-control-sm"
+                style="width: auto; min-width: 120px"
+                data-bs-toggle="tooltip"
+                title="Pick a date"
+              />
+              <div class="profile-dropdown dropdown">
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  class="profile-avatar dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  alt="User Avatar"
+                />
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Card 1: Welcome Card -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <h5 class="card-title mb-3">
+                Welcome to <span style="color: #007bff">SB Admin Pro</span>
+              </h5>
+              <p class="card-text">
+                Your personalized dashboard for project insights, progress, and
+                recent activities. Stay productive and keep track of your goals!
+              </p>
+              <img
+                src="./Asset4/image.png"
+                class="card-img-top rounded-4 mt-3 mb-2"
+                alt="..."
+                style="
+                  max-width: 80%;
+                  box-shadow: 0 2px 12px rgba(0, 123, 255, 0.12);
+                "
+              />
+            </div>
+            <div class="card-footer bg-white border-0 text-center">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2: Progress Bars -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="progress-label">
+                <span>Server Migration</span>
+                <span class="badge bg-success">25%</span>
+              </div>
+              <div class="progress mb-2">
+                <div
+                  class="progress-bar bg-success"
+                  role="progressbar"
+                  style="width: 0%"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  id="pb1"
+                >
+                  <span>25%</span>
+                </div>
+              </div>
+              <div class="progress-label">
+                <span>Sales Tracking</span>
+                <span class="badge bg-info">50%</span>
+              </div>
+              <div class="progress mb-2">
+                <div
+                  class="progress-bar bg-info"
+                  role="progressbar"
+                  style="width: 0%"
+                  aria-valuenow="50"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  id="pb2"
+                >
+                  <span>50%</span>
+                </div>
+              </div>
+              <div class="progress-label">
+                <span>Customer Database</span>
+                <span class="badge bg-warning text-dark">75%</span>
+              </div>
+              <div class="progress mb-2">
+                <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style="width: 0%"
+                  aria-valuenow="75"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  id="pb3"
+                >
+                  <span>75%</span>
+                </div>
+              </div>
+              <div class="progress-label">
+                <span>Account Setup</span>
+                <span class="badge bg-danger">100%</span>
+              </div>
+              <div class="progress">
+                <div
+                  class="progress-bar bg-danger"
+                  role="progressbar"
+                  style="width: 0%"
+                  aria-valuenow="100"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  id="pb4"
+                >
+                  <span>100%</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer bg-white border-0 text-center">
+              <small class="text-muted">Progress updated just now</small>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3: Activity List -->
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-header bg-white border-0 fw-bold fs-5">
+              Recent Activity
+            </div>
+            <div class="card-body">
+              <div class="list-group list-group-flush">
+                <div class="list-group-item d-flex align-items-center">
+                  <div
+                    class="activity-icon bg-primary text-white me-3"
+                    data-bs-toggle="tooltip"
+                    title="New User"
+                  >
+                    <i class="bi bi-person"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">New user registered</h6>
+                    <small class="text-muted"
+                      >John Doe joined the platform</small
+                    >
+                  </div>
+                  <small class="text-muted ms-2">2 hours ago</small>
+                </div>
+                <div class="list-group-item d-flex align-items-center">
+                  <div
+                    class="activity-icon bg-success text-white me-3"
+                    data-bs-toggle="tooltip"
+                    title="Order"
+                  >
+                    <i class="bi bi-cart"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">New order received</h6>
+                    <small class="text-muted">Order #12345 was placed</small>
+                  </div>
+                  <small class="text-muted ms-2">4 hours ago</small>
+                </div>
+                <div class="list-group-item d-flex align-items-center">
+                  <div
+                    class="activity-icon bg-secondary text-white me-3"
+                    data-bs-toggle="tooltip"
+                    title="System Alert"
+                  >
+                    <i class="bi bi-bell"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">System Alert</h6>
+                    <small class="text-muted">Server migration completed</small>
+                  </div>
+                  <small class="text-muted ms-2">6 hours ago</small>
+                </div>
+                <div class="list-group-item d-flex align-items-center">
+                  <div
+                    class="activity-icon bg-warning text-dark me-3"
+                    data-bs-toggle="tooltip"
+                    title="Sales Report"
+                  >
+                    <i class="bi bi-graph-up"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">Sales Report</h6>
+                    <small class="text-muted">Monthly sales increased</small>
+                  </div>
+                  <small class="text-muted ms-2">8 hours ago</small>
+                </div>
+                <div class="list-group-item d-flex align-items-center">
+                  <div
+                    class="activity-icon bg-danger text-white me-3"
+                    data-bs-toggle="tooltip"
+                    title="Payment Failed"
+                  >
+                    <i class="bi bi-exclamation-triangle"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">Payment Failed</h6>
+                    <small class="text-muted">Order #12344 payment issue</small>
+                  </div>
+                  <small class="text-muted ms-2">10 hours ago</small>
+                </div>
+                <div class="list-group-item d-flex align-items-center">
+                  <div
+                    class="activity-icon bg-info text-white me-3"
+                    data-bs-toggle="tooltip"
+                    title="New Message"
+                  >
+                    <i class="bi bi-envelope"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">New Message</h6>
+                    <small class="text-muted">Support ticket received</small>
+                  </div>
+                  <small class="text-muted ms-2">12 hours ago</small>
+                </div>
+                <div class="list-group-item d-flex align-items-center">
+                  <div
+                    class="activity-icon bg-dark text-white me-3"
+                    data-bs-toggle="tooltip"
+                    title="Security Update"
+                  >
+                    <i class="bi bi-shield-lock"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1">Security Update</h6>
+                    <small class="text-muted">Password changed</small>
+                  </div>
+                  <small class="text-muted ms-2">1 day ago</small>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer bg-white border-0 text-center">
+              <small class="text-muted">Activity log refreshed</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <!-- Stats Cards -->
+      <div class="row mb-3">
+        <div class="col-xl-3 col-md-6 mb-3">
+          <div class="card bg-primary text-white">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h6 class="card-title">Earning(Monthly)</h6>
+                  <h3 class="mb-0">$40000</h3>
+                  <small class="text-white-50">+12% from last month</small>
+                </div>
+                <div class="align-self-center">
+                  <i
+                    class="bi bi-people fs-1"
+                    data-bs-toggle="tooltip"
+                    title="Earnings"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-3">
+          <div class="card bg-success text-white">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h6 class="card-title">Revenue</h6>
+                  <h3 class="mb-0">$45,678</h3>
+                  <small class="text-white-50">+8% from last month</small>
+                </div>
+                <div class="align-self-center">
+                  <i
+                    class="bi bi-currency-dollar fs-1"
+                    data-bs-toggle="tooltip"
+                    title="Revenue"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-3">
+          <div class="card bg-warning text-white">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h6 class="card-title">Task Completion</h6>
+                  <h3 class="mb-0">24</h3>
+                  <small class="text-white-50">+15% from last month</small>
+                </div>
+                <div class="align-self-center">
+                  <i
+                    class="bi bi-cart fs-1"
+                    data-bs-toggle="tooltip"
+                    title="Tasks"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-3">
+          <div class="card bg-info text-white">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <h6 class="card-title">Pending Record</h6>
+                  <h3 class="mb-0">17</h3>
+                  <small class="text-white-50">+2.1% from last month</small>
+                </div>
+                <div class="align-self-center">
+                  <i
+                    class="bi bi-graph-up fs-1"
+                    data-bs-toggle="tooltip"
+                    title="Pending"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="container chart-container mb-4">
+      <div class="row">
+        <div class="col-12">
+          <canvas id="dashboardChart" height="80"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stylish Footer -->
+    <div class="footer">
+      &copy; 2024 SB Admin Pro Dashboard &mdash; Crafted with
+      <span style="color: #e25555">&#10084;</span> Amit Kumar Mohanty
+    </div>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+      // Animate Progress Bars
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          document.getElementById("pb1").style.width = "25%";
+          document.getElementById("pb2").style.width = "50%";
+          document.getElementById("pb3").style.width = "75%";
+          document.getElementById("pb4").style.width = "100%";
+        }, 400);
+        // Enable Bootstrap tooltips
+        var tooltipTriggerList = [].slice.call(
+          document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        );
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+          new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+      });
+      // Chart.js Example
+      const ctx = document.getElementById("dashboardChart").getContext("2d");
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          datasets: [
+            {
+              label: "Active Users",
+              data: [120, 190, 170, 220, 210, 250, 230],
+              borderColor: "#007bff",
+              backgroundColor: "rgba(0,123,255,0.08)",
+              tension: 0.4,
+              fill: true,
+              pointRadius: 5,
+              pointBackgroundColor: "#007bff",
+              pointBorderColor: "#fff",
+              pointHoverRadius: 7,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            legend: { display: false },
+            tooltip: { enabled: true },
+          },
+          scales: {
+            x: { grid: { display: false } },
+            y: { beginAtZero: true, grid: { color: "#e9ecef" } },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

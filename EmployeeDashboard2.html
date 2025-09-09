@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Dashboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Manrope", "Inter", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f9f3ef 0%, #d2c1b6 100%);
+        color: #1b3c53;
+        overflow-x: hidden;
+      }
+
+      .dashboard-container {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: clamp(16rem, 22vw, 18rem);
+        background: linear-gradient(180deg, #1b3c53 0%, #456882 100%);
+        color: #f9f3ef;
+        padding: clamp(1.5rem, 2.2vw, 2rem);
+        box-shadow: 0.25rem 0 1.25rem rgba(27, 60, 83, 0.15);
+        backdrop-filter: blur(1.5rem);
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        transition: width 0.5s ease, transform 0.5s ease;
+        animation: slideInLeft 0.7s ease-out;
+        z-index: 1000;
+        border-right: 2px solid #d2c1b633;
+      }
+
+      .sidebar h2 {
+        font-size: clamp(1.36rem, 2.8vw, 1.76rem);
+        font-weight: 900;
+        margin-bottom: clamp(2.2rem, 5vw, 3.2rem);
+        text-align: left;
+        letter-spacing: 0.15rem;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #f9f3ef, #d2c1b6, #456882);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0.125rem 0.25rem rgba(27, 60, 83, 0.2);
+      }
+
+      .sidebar ul {
+        list-style: none;
+      }
+
+      .sidebar ul li {
+        margin: clamp(0.75rem, 2vw, 1.5rem) 0;
+        animation: fadeIn 0.7s ease-out forwards;
+        animation-delay: calc(0.15s * var(--i));
+      }
+
+      .sidebar ul li a {
+        color: #f9f3ef;
+        text-decoration: none;
+        font-size: clamp(0.8rem, 1.6vw, 0.96rem);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        padding: clamp(0.6rem, 1.5vw, 1rem);
+        border-radius: clamp(0.7rem, 1.5vw, 1rem);
+        background: rgba(69, 104, 130, 0.12);
+        box-shadow: 0 2px 8px rgba(27, 60, 83, 0.07);
+        backdrop-filter: blur(0.5rem);
+        transition: all 0.3s cubic-bezier(0.4, 2, 0.6, 1);
+        border: 1.5px solid transparent;
+      }
+      .sidebar ul li a:hover {
+        background: linear-gradient(90deg, #456882 0%, #1b3c53 100%);
+        color: #f9f3ef;
+        transform: translateX(0.5rem) scale(1.05);
+        box-shadow: 0 0.25rem 1rem rgba(27, 60, 83, 0.18);
+        border: 1.5px solid #f9f3ef;
+        animation: bounce 0.3s ease-in-out;
+      }
+
+      .sidebar ul li a i {
+        margin-right: clamp(0.5rem, 1.5vw, 0.875rem);
+        font-size: clamp(0.8rem, 2vw, 1.2rem);
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        padding: clamp(2rem, 5vw, 4rem);
+        background: rgba(249, 243, 239, 0.85);
+        border-radius: clamp(1.2rem, 3vw, 2.5rem) 0 0 clamp(1.2rem, 3vw, 2.5rem);
+        box-shadow: 0 8px 32px 0 rgba(27, 60, 83, 0.1);
+        backdrop-filter: blur(1.2rem);
+        animation: fadeIn 0.9s ease-out;
+      }
+
+      .header {
+        background: linear-gradient(90deg, #1b3c53 0%, #456882 100%);
+        padding: clamp(1rem, 2.5vw, 1.5rem) clamp(2rem, 5vw, 3.5rem);
+        border-radius: clamp(1rem, 2vw, 2rem);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.13);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: clamp(2rem, 5vw, 4rem);
+        color: #f9f3ef;
+        animation: slideInDown 0.8s ease-out;
+      }
+
+      .header span {
+        font-size: clamp(1rem, 2.4vw, 1.4rem);
+        font-weight: 800;
+        letter-spacing: 0.1rem;
+        text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.75rem, 3vw, 1.875rem);
+      }
+
+      .user-info img {
+        width: clamp(2.5rem, 6vw, 3.5rem);
+        height: clamp(2.5rem, 6vw, 3.5rem);
+        border-radius: 50%;
+        border: clamp(0.125rem, 0.5vw, 0.25rem) solid #d2c1b6;
+        transition: transform 0.6s ease, box-shadow 0.6s ease;
+      }
+
+      .user-info img:hover {
+        transform: scale(1.3);
+        box-shadow: 0 0 clamp(0.9375rem, 3vw, 1.875rem) rgba(210, 193, 182, 0.8);
+      }
+
+      .user-info span {
+        font-size: clamp(0.7rem, 1.6vw, 1rem);
+        font-weight: 700;
+        text-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.3);
+      }
+
+      /* Dashboard Sections */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(clamp(18rem, 45vw, 25rem), 1fr)
+        );
+        gap: clamp(1.25rem, 4vw, 2.5rem);
+      }
+
+      .card {
+        background: rgba(210, 193, 182, 0.92);
+        padding: clamp(1.5rem, 4vw, 3rem);
+        border-radius: clamp(1rem, 2vw, 2rem);
+        box-shadow: 0 8px 32px 0 rgba(27, 60, 83, 0.1);
+        border: 1.5px solid #f9f3ef22;
+        backdrop-filter: blur(0.7rem);
+        transition: transform 0.5s cubic-bezier(0.4, 2, 0.6, 1),
+          box-shadow 0.5s cubic-bezier(0.4, 2, 0.6, 1);
+        animation: fadeInUp 0.8s ease-out;
+      }
+      .card:hover {
+        transform: translateY(-1.2rem) scale(1.03);
+        box-shadow: 0 1.5rem 3rem rgba(27, 60, 83, 0.18);
+        border: 1.5px solid #456882;
+      }
+
+      .card h3 {
+        font-size: clamp(1.04rem, 2.4vw, 1.6rem);
+        font-weight: 800;
+        margin-bottom: clamp(1.2rem, 3vw, 2.5rem);
+        color: #1b3c53;
+        border-bottom: 2.5px solid #456882;
+        padding-bottom: clamp(0.7rem, 1.5vw, 1.2rem);
+        letter-spacing: 0.05em;
+      }
+
+      .card ul {
+        list-style: none;
+      }
+
+      .card ul li {
+        margin: clamp(0.7rem, 2vw, 1.5rem) 0;
+        padding: clamp(0.7rem, 2vw, 1.5rem);
+        background: linear-gradient(90deg, #f9f3ef 0%, #d2c1b6 100%);
+        border-radius: clamp(0.7rem, 1.5vw, 1.2rem);
+        font-size: clamp(0.8rem, 2vw, 0.96rem);
+        color: #1b3c53;
+        transition: all 0.5s cubic-bezier(0.4, 2, 0.6, 1);
+        box-shadow: 0 2px 8px rgba(27, 60, 83, 0.07);
+      }
+      .card ul li:hover {
+        background: linear-gradient(90deg, #456882 0%, #1b3c53 100%);
+        color: #f9f3ef;
+        transform: translateX(1rem) scale(1.04);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.13);
+      }
+
+      .performance-metrics {
+        display: flex;
+        gap: clamp(1rem, 3vw, 2.1875rem);
+        flex-wrap: wrap;
+      }
+
+      .metric {
+        flex: 1;
+        min-width: clamp(8rem, 22vw, 12.5rem);
+        text-align: center;
+        padding: clamp(1.2rem, 3vw, 2.5rem);
+        background: linear-gradient(135deg, #1b3c53 0%, #456882 100%);
+        color: #f9f3ef;
+        border-radius: clamp(0.7rem, 1.5vw, 1.2rem);
+        box-shadow: 0 2px 8px rgba(27, 60, 83, 0.1);
+        transition: transform 0.5s cubic-bezier(0.4, 2, 0.6, 1),
+          box-shadow 0.5s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+      .metric:hover {
+        transform: scale(1.18);
+        box-shadow: 0 1rem 2.5rem rgba(27, 60, 83, 0.18);
+      }
+
+      .metric h4 {
+        font-size: clamp(0.7rem, 2vw, 1rem);
+        font-weight: 600;
+        margin-bottom: clamp(0.625rem, 2vw, 1.25rem);
+      }
+
+      .metric p {
+        font-size: clamp(1rem, 3.2vw, 1.7rem);
+        font-weight: 800;
+      }
+
+      /* Calendar Section */
+      .calendar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(0.625rem, 2vw, 1.125rem);
+        padding: clamp(1rem, 3vw, 1.875rem);
+        background: rgba(249, 243, 239, 0.85);
+        border-radius: clamp(0.5rem, 1.5vw, 1rem);
+        box-shadow: 0 clamp(0.25rem, 1vw, 0.5rem)
+          clamp(0.625rem, 2.5vw, 1.5625rem) rgba(0, 0, 0, 0.2);
+      }
+
+      .calendar-day {
+        width: clamp(2.25rem, 6vw, 3.4375rem);
+        height: clamp(2.25rem, 6vw, 3.4375rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f9f3ef 0%, #d2c1b6 100%);
+        color: #1b3c53;
+        border: 2px solid #d2c1b622;
+        border-radius: clamp(0.375rem, 1.5vw, 0.875rem);
+        font-size: clamp(0.5rem, 1.6vw, 0.8rem);
+        font-weight: 600;
+        transition: all 0.5s ease;
+      }
+
+      .calendar-day:hover {
+        background: linear-gradient(135deg, #456882 0%, #1b3c53 100%);
+        color: #f9f3ef;
+        transform: scale(1.22);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.13);
+      }
+
+      /* Team Collaboration */
+      .team-members {
+        display: flex;
+        gap: clamp(1rem, 3vw, 1.875rem);
+        flex-wrap: wrap;
+      }
+
+      .team-member {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.875rem, 2.5vw, 1.5625rem);
+        padding: clamp(0.875rem, 2.5vw, 1.5625rem);
+        background: rgba(69, 104, 130, 0.08);
+        border: 1.5px solid #d2c1b622;
+        border-radius: clamp(0.5rem, 1.5vw, 1rem);
+        transition: all 0.5s ease;
+      }
+
+      .team-member:hover {
+        background: linear-gradient(90deg, #456882 0%, #1b3c53 100%);
+        color: #f9f3ef;
+        transform: translateY(-0.8rem) scale(1.04);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.13);
+      }
+
+      .team-member img {
+        width: clamp(1.75rem, 5vw, 3.125rem);
+        height: clamp(1.75rem, 5vw, 3.125rem);
+        border-radius: 50%;
+        border: clamp(0.125rem, 0.5vw, 0.25rem) solid #d2c1b6;
+        transition: transform 0.5s ease;
+      }
+
+      .team-member:hover img {
+        transform: scale(1.15);
+      }
+
+      /* Progress Tracker */
+      .progress-tracker {
+        margin-top: clamp(0.875rem, 2.5vw, 1.5625rem);
+      }
+
+      .progress-bar {
+        background: #d2c1b6;
+        border-radius: clamp(0.5rem, 1.5vw, 1rem);
+        height: clamp(1.2rem, 2.5vw, 2rem);
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 2px 8px rgba(27, 60, 83, 0.07);
+      }
+
+      .progress-fill {
+        background: linear-gradient(90deg, #1b3c53 0%, #456882 100%);
+        height: 100%;
+        transition: width 0.6s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+
+      .progress-label {
+        font-size: clamp(0.8rem, 1.6vw, 1.04rem);
+        margin-top: clamp(0.7rem, 1.5vw, 1.2rem);
+        color: #456882;
+        font-weight: 700;
+      }
+
+      /* Notification Center */
+      .notification {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.625rem, 2vw, 1.25rem);
+        padding: clamp(0.625rem, 2vw, 1.25rem);
+        background: rgba(69, 104, 130, 0.08);
+        border: 1.5px solid #d2c1b622;
+        border-radius: clamp(0.5rem, 1.5vw, 1rem);
+        margin: clamp(0.5rem, 1.5vw, 0.9375rem) 0;
+        transition: all 0.5s ease;
+      }
+
+      .notification:hover {
+        background: linear-gradient(90deg, #456882 0%, #1b3c53 100%);
+        color: #f9f3ef;
+        transform: translateX(1rem) scale(1.04);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.13);
+      }
+
+      .notification i {
+        font-size: clamp(0.7rem, 2vw, 1.2rem);
+        color: #456882;
+      }
+
+      /* Feedback Section */
+      .feedback-form {
+        margin-top: clamp(0.875rem, 2.5vw, 1.5625rem);
+      }
+
+      .feedback-form textarea {
+        width: 100%;
+        padding: clamp(0.5rem, 1.5vw, 1rem);
+        border-radius: clamp(0.375rem, 1.5vw, 0.75rem);
+        border: 0.0625rem solid #d2c1b6;
+        background: rgba(249, 243, 239, 0.9);
+        font-size: clamp(0.6rem, 1.6vw, 0.8rem);
+        resize: vertical;
+        transition: all 0.3s ease;
+      }
+
+      .feedback-form textarea:focus {
+        outline: none;
+        border-color: #456882;
+        box-shadow: 0 0 clamp(0.25rem, 1vw, 0.625rem) rgba(69, 104, 130, 0.5);
+      }
+
+      .feedback-form button {
+        margin-top: clamp(0.5rem, 1.5vw, 0.9375rem);
+        padding: clamp(0.375rem, 1.5vw, 0.75rem) clamp(0.875rem, 2.5vw, 1.5rem);
+        border: none;
+        border-radius: clamp(0.5rem, 1.5vw, 1rem);
+        background: linear-gradient(90deg, #1b3c53 0%, #456882 100%);
+        color: #f9f3ef;
+        font-size: clamp(0.6rem, 1.6vw, 0.8rem);
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+
+      .feedback-form button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.18);
+        background: linear-gradient(90deg, #456882 0%, #1b3c53 100%);
+      }
+
+      /* Recent Activity */
+      .activity-feed {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.5rem, 1.5vw, 0.9375rem);
+      }
+
+      .activity-item {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.625rem, 2vw, 1.25rem);
+        padding: clamp(0.625rem, 2vw, 1.25rem);
+        background: rgba(69, 104, 130, 0.08);
+        border: 1.5px solid #d2c1b622;
+        border-radius: clamp(0.5rem, 1.5vw, 1rem);
+        transition: all 0.5s ease;
+      }
+
+      .activity-item:hover {
+        background: linear-gradient(90deg, #456882 0%, #1b3c53 100%);
+        color: #f9f3ef;
+        transform: translateX(1rem) scale(1.04);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.13);
+      }
+
+      .activity-item i {
+        font-size: clamp(0.7rem, 2vw, 1.2rem);
+        color: #456882;
+      }
+
+      /* Quick Links */
+      .quick-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(0.5rem, 1.5vw, 0.9375rem);
+      }
+
+      .quick-link {
+        flex: 1;
+        min-width: clamp(7rem, 18vw, 10rem);
+        text-align: center;
+        padding: clamp(0.625rem, 2vw, 1.25rem);
+        background: linear-gradient(135deg, #1b3c53 0%, #456882 100%);
+        color: #f9f3ef;
+        border-radius: clamp(0.7rem, 1.5vw, 1.2rem);
+        text-decoration: none;
+        font-size: clamp(0.6rem, 1.6vw, 0.8rem);
+        font-weight: 700;
+        transition: all 0.5s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+
+      .quick-link:hover {
+        transform: scale(1.13);
+        box-shadow: 0 1rem 2.5rem rgba(27, 60, 83, 0.18);
+        background: linear-gradient(135deg, #456882 0%, #1b3c53 100%);
+      }
+
+      /* Goal Tracker */
+      .goal-tracker {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.625rem, 1.5vw, 1rem);
+      }
+
+      .goal-item {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.625rem, 2vw, 1.25rem);
+        padding: clamp(0.625rem, 2vw, 1.25rem);
+        background: rgba(69, 104, 130, 0.08);
+        border: 1.5px solid #d2c1b622;
+        border-radius: clamp(0.5rem, 1.5vw, 1rem);
+        transition: all 0.5s ease;
+      }
+
+      .goal-item:hover {
+        background: linear-gradient(90deg, #456882 0%, #1b3c53 100%);
+        color: #f9f3ef;
+        transform: translateX(1rem) scale(1.04);
+        box-shadow: 0 0.5rem 2rem rgba(27, 60, 83, 0.13);
+      }
+
+      .goal-item i {
+        font-size: clamp(0.7rem, 2vw, 1.2rem);
+        color: #456882;
+      }
+
+      .goal-item.completed i {
+        color: #2e7d32;
+      }
+
+      /* Resource Hub */
+      .resource-hub {
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(0.5rem, 1.5vw, 0.9375rem);
+      }
+
+      .resource-item {
+        flex: 1;
+        min-width: clamp(7rem, 18vw, 10rem);
+        text-align: center;
+        padding: clamp(0.625rem, 2vw, 1.25rem);
+        background: linear-gradient(135deg, #1b3c53 0%, #456882 100%);
+        color: #f9f3ef;
+        border-radius: clamp(0.7rem, 1.5vw, 1.2rem);
+        text-decoration: none;
+        font-size: clamp(0.6rem, 1.6vw, 0.8rem);
+        font-weight: 700;
+        transition: all 0.5s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+
+      .resource-item:hover {
+        transform: scale(1.13);
+        box-shadow: 0 1rem 2.5rem rgba(27, 60, 83, 0.18);
+        background: linear-gradient(135deg, #456882 0%, #1b3c53 100%);
+      }
+
+      /* Animations */
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInDown {
+        from {
+          transform: translateY(clamp(2rem, 8vw, 4.375rem));
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(clamp(0.875rem, 3vw, 1.875rem));
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(clamp(1.5rem, 5vw, 3.125rem));
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(clamp(0.5rem, 1.5vw, 0.75rem));
+        }
+        50% {
+          transform: translateX(clamp(0.75rem, 2vw, 1rem)) scale(1.05);
+        }
+      }
+
+      /* Remove extra space at the bottom of Quick Stats card */
+      .quick-stats-card {
+        padding-bottom: 0.5rem !important;
+        margin-bottom: 0 !important;
+      }
+      .quick-stats-card .performance-metrics {
+        margin-bottom: 0 !important;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .sidebar {
+          width: clamp(14rem, 35vw, 16rem);
+          padding: clamp(1.125rem, 2.8vw, 1.375rem);
+        }
+
+        .dashboard-grid {
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(clamp(16rem, 40vw, 22.5rem), 1fr)
+          );
+        }
+
+        .main-content {
+          padding: clamp(1.25rem, 4vw, 2.5rem);
+        }
+
+        .header {
+          padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1.25rem, 4vw, 2.5rem);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .dashboard-container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: static;
+          padding: clamp(0.875rem, 2.5vw, 1.25rem);
+          box-shadow: none;
+          border-bottom: 0.125rem solid rgba(249, 243, 239, 0.3);
+        }
+
+        .sidebar h2 {
+          font-size: clamp(1rem, 2.8vw, 1.4rem);
+          text-align: center;
+        }
+
+        .sidebar ul {
+          display: flex;
+          flex-wrap: wrap;
+          gap: clamp(0.5rem, 1.5vw, 1rem);
+          justify-content: center;
+        }
+
+        .sidebar ul li {
+          margin: clamp(0.5rem, 1.5vw, 0.75rem) 0;
+        }
+
+        .sidebar ul li a {
+          font-size: clamp(0.6rem, 1.6vw, 0.8rem);
+          padding: clamp(0.375rem, 1vw, 0.75rem);
+        }
+
+        .sidebar ul li a i {
+          font-size: clamp(0.7rem, 1.6vw, 1rem);
+          margin-right: clamp(0.375rem, 1vw, 0.75rem);
+        }
+
+        .main-content {
+          border-radius: 0;
+          padding: clamp(1rem, 3vw, 2rem);
+        }
+
+        .header span {
+          font-size: clamp(0.8rem, 2vw, 1.2rem);
+        }
+
+        .user-info img {
+          width: clamp(2rem, 5vw, 3rem);
+          height: clamp(2rem, 5vw, 3rem);
+        }
+
+        .user-info span {
+          font-size: clamp(0.6rem, 1.44vw, 0.8rem);
+        }
+
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          padding: clamp(1rem, 3vw, 2rem);
+        }
+
+        .card h3 {
+          font-size: clamp(0.8rem, 2vw, 1.2rem);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header {
+          padding: clamp(0.625rem, 1.8vw, 1rem);
+          flex-wrap: wrap;
+          gap: clamp(0.5rem, 2vw, 1rem);
+        }
+
+        .header span {
+          font-size: clamp(0.7rem, 1.76vw, 1rem);
+        }
+
+        .user-info img {
+          width: clamp(1.75rem, 4.5vw, 2.5rem);
+          height: clamp(1.75rem, 4.5vw, 2.5rem);
+        }
+
+        .user-info span {
+          font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+        }
+
+        .card {
+          padding: clamp(0.875rem, 2.5vw, 1.5rem);
+        }
+
+        .card h3 {
+          font-size: clamp(0.75rem, 2vw, 1.1rem);
+          margin-bottom: clamp(0.875rem, 2.5vw, 1.5rem);
+        }
+
+        .card ul li {
+          font-size: clamp(0.6rem, 1.6vw, 0.8rem);
+          padding: clamp(0.5rem, 1.5vw, 1rem);
+        }
+
+        .metric {
+          min-width: clamp(6.5rem, 20vw, 10rem);
+          padding: clamp(0.875rem, 2.5vw, 1.5rem);
+        }
+
+        .metric h4 {
+          font-size: clamp(0.6rem, 1.6vw, 0.9rem);
+        }
+
+        .metric p {
+          font-size: clamp(0.9rem, 2.4vw, 1.4rem);
+        }
+
+        .calendar-day {
+          width: clamp(1.75rem, 5vw, 3rem);
+          height: clamp(1.75rem, 5vw, 3rem);
+          font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+        }
+
+        .team-member img {
+          width: clamp(1.5rem, 4vw, 2.5rem);
+          height: clamp(1.5rem, 4vw, 2.5rem);
+        }
+
+        .notification {
+          font-size: clamp(0.5rem, 1.6vw, 0.75rem);
+        }
+
+        .notification i {
+          font-size: clamp(0.6rem, 1.6vw, 1rem);
+        }
+
+        .progress-bar {
+          height: clamp(0.625rem, 2vw, 1.25rem);
+        }
+
+        .progress-label {
+          font-size: clamp(0.5rem, 1.6vw, 0.8rem);
+        }
+
+        .feedback-form textarea {
+          font-size: clamp(0.5rem, 1.6vw, 0.75rem);
+        }
+
+        .feedback-form button {
+          font-size: clamp(0.5rem, 1.6vw, 0.75rem);
+          padding: clamp(0.375rem, 1.5vw, 0.625rem)
+            clamp(0.625rem, 2vw, 1.25rem);
+        }
+
+        .quick-link {
+          min-width: clamp(5.5rem, 15vw, 8rem);
+          font-size: clamp(0.5rem, 1.6vw, 0.7rem);
+        }
+
+        .goal-item {
+          font-size: clamp(0.5rem, 1.6vw, 0.75rem);
+        }
+
+        .goal-item i {
+          font-size: clamp(0.6rem, 1.6vw, 1rem);
+        }
+
+        .resource-item {
+          min-width: clamp(5.5rem, 15vw, 8rem);
+          font-size: clamp(0.5rem, 1.6vw, 0.7rem);
+        }
+      }
+
+      @media (max-width: 360px) {
+        .sidebar {
+          padding: clamp(0.625rem, 2vw, 0.875rem);
+        }
+
+        .sidebar h2 {
+          font-size: clamp(0.8rem, 2.4vw, 1.2rem);
+        }
+
+        .main-content {
+          padding: clamp(0.625rem, 2vw, 1.25rem);
+        }
+
+        .dashboard-grid {
+          gap: clamp(0.875rem, 2.5vw, 1.5rem);
+        }
+
+        .metric {
+          min-width: clamp(5.5rem, 15vw, 8.75rem);
+        }
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h2>Employee Portal</h2>
+        <ul>
+          <li style="--i: 1">
+            <a href="#dashboard"
+              ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+            >
+          </li>
+          <li style="--i: 2">
+            <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+          </li>
+          <li style="--i: 3">
+            <a href="#tasks"><i class="fas fa-tasks"></i> Tasks</a>
+          </li>
+          <li style="--i: 4">
+            <a href="#performance"
+              ><i class="fas fa-chart-line"></i> Performance</a
+            >
+          </li>
+          <li style="--i: 5">
+            <a href="#calendar"><i class="fas fa-calendar-alt"></i> Calendar</a>
+          </li>
+          <li style="--i: 6">
+            <a href="#team"><i class="fas fa-users"></i> Team</a>
+          </li>
+          <li style="--i: 7">
+            <a href="#notifications"
+              ><i class="fas fa-bell"></i> Notifications</a
+            >
+          </li>
+          <li style="--i: 8">
+            <a href="#feedback"><i class="fas fa-comment"></i> Feedback</a>
+          </li>
+          <li style="--i: 9">
+            <a href="#activity"><i class="fas fa-history"></i> Activity</a>
+          </li>
+          <li style="--i: 10">
+            <a href="#links"><i class="fas fa-link"></i> Quick Links</a>
+          </li>
+          <li style="--i: 11">
+            <a href="#goals"><i class="fas fa-bullseye"></i> Goals</a>
+          </li>
+          <li style="--i: 12">
+            <a href="#resources"><i class="fas fa-book"></i> Resources</a>
+          </li>
+          <li style="--i: 13">
+            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="header">
+          <span>Welcome To Dyashin Employee Portal</span>
+          <div class="user-info">
+            <img src="https://via.placeholder.com/75" alt="User Avatar" />
+            <span>Amit Kumar</span>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Quick Stats -->
+          <div class="card quick-stats-card">
+            <h3>Quick Stats</h3>
+            <div class="performance-metrics">
+              <div class="metric">
+                <h4>Active Projects</h4>
+                <p>5</p>
+              </div>
+              <div class="metric">
+                <h4>Pending Tasks</h4>
+                <p>8</p>
+              </div>
+              <div class="metric">
+                <h4>Upcoming Meetings</h4>
+                <p>3</p>
+              </div>
+              <div class="metric">
+                <h4>Leave Balance</h4>
+                <p>12 days</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Employee Info -->
+          <div class="card">
+            <h3>Employee Information</h3>
+            <ul>
+              <li>Employee ID: 12345</li>
+              <li>Department: Engineering</li>
+              <li>Position: Software Developer</li>
+              <li>Email: john.doe@company.com</li>
+              <li>Phone: +1 (555) 123-4567</li>
+              <li>Location: New York Office</li>
+              <li>Joined: January 2023</li>
+              <li>Manager: Emily Davis</li>
+              <li>Skills: JavaScript, Python, React, Node.js</li>
+            </ul>
+          </div>
+
+          <!-- Tasks -->
+          <div class="card">
+            <h3>Current Tasks</h3>
+            <ul>
+              <li>Complete project documentation (Due: 07/20/2025)</li>
+              <li>Attend team meeting (07/18/2025, 2 PM)</li>
+              <li>Review code submissions</li>
+              <li>Update API endpoints</li>
+              <li>Prepare sprint report</li>
+              <li>Test new UI components</li>
+              <li>Optimize database queries</li>
+            </ul>
+          </div>
+
+          <!-- Performance Metrics -->
+          <div class="card">
+            <h3>Performance Metrics</h3>
+            <div class="performance-metrics">
+              <div class="metric">
+                <h4>Projects Completed</h4>
+                <p>12</p>
+              </div>
+              <div class="metric">
+                <h4>Tasks On Time</h4>
+                <p>95%</p>
+              </div>
+              <div class="metric">
+                <h4>Team Rating</h4>
+                <p>4.8/5</p>
+              </div>
+              <div class="metric">
+                <h4>Hours Worked</h4>
+                <p>160</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calendar -->
+          <div class="card">
+            <h3>Upcoming Events</h3>
+            <div class="calendar">
+              <div class="calendar-day">Mon<br />14</div>
+              <div class="calendar-day">Tue<br />15</div>
+              <div class="calendar-day">Wed<br />16</div>
+              <div class="calendar-day">Thu<br />17</div>
+              <div class="calendar-day">Fri<br />18</div>
+              <div class="calendar-day">Sat<br />19</div>
+              <div class="calendar-day">Sun<br />20</div>
+            </div>
+          </div>
+
+          <!-- Announcements -->
+          <div class="card">
+            <h3>Announcements</h3>
+            <ul>
+              <li>Company-wide meeting on 07/25/2025</li>
+              <li>New HR policy updates effective 08/01/2025</li>
+              <li>Team outing planned for 07/30/2025</li>
+              <li>Tech talk webinar on 07/22/2025</li>
+              <li>New project kickoff on 07/28/2025</li>
+              <li>Annual review cycle starts 08/15/2025</li>
+            </ul>
+          </div>
+
+          <!-- Team Collaboration -->
+          <div class="card">
+            <h3>Team Collaboration</h3>
+            <div class="team-members">
+              <div class="team-member">
+                <img src="https://via.placeholder.com/50" alt="Team Member" />
+                <span>Jane Smith - Designer</span>
+              </div>
+              <div class="team-member">
+                <img src="https://via.placeholder.com/50" alt="Team Member" />
+                <span>Mike Johnson - Developer</span>
+              </div>
+              <div class="team-member">
+                <img src="https://via.placeholder.com/50" alt="Team Member" />
+                <span>Emily Davis - Manager</span>
+              </div>
+              <div class="team-member">
+                <img src="https://via.placeholder.com/50" alt="Team Member" />
+                <span>Chris Lee - QA Engineer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notification Center -->
+          <div class="card">
+            <h3>Notification Center</h3>
+            <div class="notification">
+              <i class="fas fa-bell"></i>
+              <span>New task assigned: Review API documentation</span>
+            </div>
+            <div class="notification">
+              <i class="fas fa-calendar-check"></i>
+              <span>Meeting rescheduled to 07/18/2025, 3 PM</span>
+            </div>
+            <div class="notification">
+              <i class="fas fa-exclamation-circle"></i>
+              <span>Project deadline approaching: 07/20/2025</span>
+            </div>
+          </div>
+
+          <!-- Progress Tracker -->
+          <div class="card">
+            <h3>Project Progress</h3>
+            <div class="progress-tracker">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%"></div>
+              </div>
+              <div class="progress-label">Current Project: 75% Complete</div>
+            </div>
+            <div class="progress-tracker">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 40%"></div>
+              </div>
+              <div class="progress-label">Next Sprint: 40% Complete</div>
+            </div>
+          </div>
+
+          <!-- Feedback Section -->
+          <div class="card">
+            <h3>Submit Feedback</h3>
+            <div class="feedback-form">
+              <textarea
+                rows="4"
+                placeholder="Enter your feedback or suggestions..."
+              ></textarea>
+              <button>Submit Feedback</button>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="card">
+            <h3>Recent Activity</h3>
+            <div class="activity-feed">
+              <div class="activity-item">
+                <i class="fas fa-check-circle"></i>
+                <span>Completed task: Database optimization (07/15/2025)</span>
+              </div>
+              <div class="activity-item">
+                <i class="fas fa-comment"></i>
+                <span>Commented on project documentation (07/14/2025)</span>
+              </div>
+              <div class="activity-item">
+                <i class="fas fa-upload"></i>
+                <span>Uploaded sprint report (07/13/2025)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="card">
+            <h3>Quick Links</h3>
+            <div class="quick-links">
+              <a href="#timesheet" class="quick-link">Timesheet</a>
+              <a href="#leave" class="quick-link">Leave Request</a>
+              <a href="#training" class="quick-link">Training Portal</a>
+              <a href="#support" class="quick-link">IT Support</a>
+            </div>
+          </div>
+
+          <!-- Goal Tracker -->
+          <div class="card">
+            <h3>Goal Tracker</h3>
+            <div class="goal-tracker">
+              <div class="goal-item completed">
+                <i class="fas fa-check-circle"></i>
+                <span>Complete API integration (Completed: 07/10/2025)</span>
+              </div>
+              <div class="goal-item">
+                <i class="fas fa-bullseye"></i>
+                <span
+                  >Improve code review efficiency by 20% (Due: 08/15/2025)</span
+                >
+              </div>
+              <div class="goal-item">
+                <i class="fas fa-bullseye"></i>
+                <span>Attend leadership training (Due: 09/01/2025)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resource Hub -->
+          <div class="card">
+            <h3>Resource Hub</h3>
+            <div class="resource-hub">
+              <a href="#handbook" class="resource-item">Employee Handbook</a>
+              <a href="#benefits" class="resource-item">Benefits Guide</a>
+              <a href="#policies" class="resource-item">Company Policies</a>
+              <a href="#training" class="resource-item">Training Resources</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dyashin Technosoft Media</title>
+    <link rel="stylesheet" href="style3.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Google Fonts for Montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+      .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      [class^="col-"],
+      [class*=" col-"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      img,
+      svg {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      :root {
+        /* Default: Vibrant (Sunset Pop) */
+        --primary: #ff6f61;
+        --secondary: #ffb347;
+        --accent: #6a89cc;
+        --background: #f7f1e3;
+        --footer: #22223b;
+        --text: #222;
+        /* Service Card Colors (Vibrant) */
+        --service1-bg: #ffb347;
+        --service1-accent: #ff6f61;
+        --service2-bg: #6a89cc;
+        --service2-accent: #ff6f61;
+        --service3-bg: #f7b2ad;
+        --service3-accent: #ff6f61;
+        --service4-bg: #43e97b;
+        --service4-accent: #ff6f61;
+        --service5-bg: #b8c1ec;
+        --service5-accent: #ff6f61;
+        --service6-bg: #f7f1e3;
+        --service6-accent: #ff6f61;
+      }
+      body.theme-vibrant {
+        --primary: #ff6f61;
+        --secondary: #ffb347;
+        --accent: #6a89cc;
+        --background: #f7f1e3;
+        --footer: #22223b;
+        --text: #222;
+        --service1-bg: #ffb347;
+        --service1-accent: #ff6f61;
+        --service2-bg: #6a89cc;
+        --service2-accent: #ff6f61;
+        --service3-bg: #f7b2ad;
+        --service3-accent: #ff6f61;
+        --service4-bg: #43e97b;
+        --service4-accent: #ff6f61;
+        --service5-bg: #b8c1ec;
+        --service5-accent: #ff6f61;
+        --service6-bg: #f7f1e3;
+        --service6-accent: #ff6f61;
+      }
+      body.theme-dark {
+        --primary: #232946;
+        --secondary: #eebbc3;
+        --accent: #b8c1ec;
+        --background: #121629;
+        --footer: #232946;
+        --text: #fff;
+        --service1-bg: #eebbc3;
+        --service1-accent: #232946;
+        --service2-bg: #b8c1ec;
+        --service2-accent: #232946;
+        --service3-bg: #232946;
+        --service3-accent: #eebbc3;
+        --service4-bg: #393e46;
+        --service4-accent: #eebbc3;
+        --service5-bg: #232946;
+        --service5-accent: #b8c1ec;
+        --service6-bg: #393e46;
+        --service6-accent: #b8c1ec;
+      }
+      body.theme-pastel {
+        --primary: #43e97b;
+        --secondary: #38f9d7;
+        --accent: #f7b2ad;
+        --background: #fafffd;
+        --footer: #a7ffeb;
+        --text: #222;
+        --service1-bg: #38f9d7;
+        --service1-accent: #43e97b;
+        --service2-bg: #f7b2ad;
+        --service2-accent: #43e97b;
+        --service3-bg: #fafffd;
+        --service3-accent: #43e97b;
+        --service4-bg: #a7ffeb;
+        --service4-accent: #43e97b;
+        --service5-bg: #b8c1ec;
+        --service5-accent: #43e97b;
+        --service6-bg: #f7b2ad;
+        --service6-accent: #43e97b;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--background);
+        color: var(--text);
+      }
+      .navbar {
+        background: var(--primary);
+      }
+      .navbar-brand img {
+        border-radius: 8px;
+      }
+      .header {
+        background: linear-gradient(
+          120deg,
+          var(--secondary) 60%,
+          var(--background) 100%
+        );
+        min-height: 60vh;
+        padding: 60px 0 40px 0;
+        text-align: center;
+      }
+      .header h1 {
+        font-weight: 700;
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        color: var(--primary);
+      }
+      .header .cp {
+        color: var(--accent);
+      }
+      .hero-btn {
+        background: var(--accent);
+        color: #fff;
+        padding: 12px 32px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.2s, box-shadow 0.2s;
+        display: inline-block;
+        margin-top: 20px;
+        box-shadow: 0 2px 8px rgba(79, 138, 139, 0.15);
+        font-size: 1.1rem;
+      }
+      .hero-btn:hover {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(253, 114, 114, 0.18);
+      }
+      section {
+        margin-bottom: 0;
+      }
+      .course {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 2px 16px rgba(30, 34, 90, 0.07);
+        margin-bottom: 40px;
+        padding: 60px 0 60px 0;
+      }
+      .course-col {
+        background: var(--secondary);
+        border-radius: 14px;
+        padding: 36px 28px 28px 28px;
+        box-shadow: 0 1px 8px rgba(30, 34, 90, 0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        min-width: 0;
+        word-break: break-word;
+      }
+      .service-card-1 {
+        background: var(--service1-bg) !important;
+      }
+      .service-card-1 .card-accent {
+        background: var(--service1-accent) !important;
+      }
+      .service-card-2 {
+        background: var(--service2-bg) !important;
+      }
+      .service-card-2 .card-accent {
+        background: var(--service2-accent) !important;
+      }
+      .service-card-3 {
+        background: var(--service3-bg) !important;
+      }
+      .service-card-3 .card-accent {
+        background: var(--service3-accent) !important;
+      }
+      .service-card-4 {
+        background: var(--service4-bg) !important;
+      }
+      .service-card-4 .card-accent {
+        background: var(--service4-accent) !important;
+      }
+      .service-card-5 {
+        background: var(--service5-bg) !important;
+      }
+      .service-card-5 .card-accent {
+        background: var(--service5-accent) !important;
+      }
+      .service-card-6 {
+        background: var(--service6-bg) !important;
+      }
+      .service-card-6 .card-accent {
+        background: var(--service6-accent) !important;
+      }
+      .course-col h3 {
+        margin-bottom: 18px;
+        margin-top: 0;
+        color: var(--primary);
+      }
+      .course-col p {
+        margin-bottom: 0;
+        color: var(--text);
+      }
+      .course-col:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 4px 24px rgba(253, 114, 114, 0.15);
+      }
+      .card-accent {
+        width: 40px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 2px;
+        margin-bottom: 16px;
+      }
+      .testimonials-col {
+        text-align: left;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 1px 8px rgba(30, 34, 90, 0.05);
+        padding: 24px 20px;
+      }
+      .testimonials-col h3 {
+        margin-top: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary);
+      }
+      .testimonials-col i.fa {
+        color: var(--secondary);
+      }
+      .cta {
+        background: linear-gradient(
+          90deg,
+          var(--secondary) 60%,
+          var(--background) 100%
+        );
+        text-align: center;
+        border: none;
+        box-shadow: none;
+      }
+      .cta h1 {
+        font-size: clamp(1.2rem, 4vw, 2rem);
+        font-weight: 600;
+        margin-bottom: 24px;
+        color: var(--primary);
+      }
+      .footer {
+        background: var(--footer);
+        color: #fff;
+        text-align: center;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 40px 0 20px 0;
+      }
+      .footer h4 {
+        font-weight: 700;
+        margin-bottom: 18px;
+        color: var(--secondary);
+      }
+      .footer .icon i {
+        font-size: 1.5rem;
+        margin: 0 10px;
+        color: var(--accent);
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+      .footer .icon i:hover {
+        color: var(--secondary);
+      }
+      #backToTop {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 99;
+        font-size: 2rem;
+        border: none;
+        outline: none;
+        background: var(--primary);
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 18px;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(30, 34, 90, 0.15);
+        transition: background 0.2s;
+      }
+      #backToTop:hover {
+        background: var(--accent);
+      }
+      /* Facilities section custom styles */
+      .facilities {
+        font-family: "Montserrat", "Poppins", sans-serif;
+        background: #fff;
+      }
+      .facililes-col {
+        background: var(--background);
+        border-radius: 18px;
+        box-shadow: 0 4px 24px rgba(30, 34, 90, 0.1);
+        padding: 28px 20px 20px 20px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100%;
+      }
+      .facililes-col:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 8px 32px rgba(253, 114, 114, 0.18);
+      }
+      .facililes-col img {
+        border-radius: 12px;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 8px rgba(30, 34, 90, 0.07);
+      }
+      .facililes-col h3 {
+        font-family: "Montserrat", "Poppins", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 12px;
+        text-align: center;
+      }
+      .facililes-col p {
+        font-size: 1rem;
+        color: var(--text);
+        text-align: center;
+      }
+      .section-divider {
+        width: 100vw;
+        min-width: 100%;
+        height: auto;
+        display: block;
+      }
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 24px;
+        padding-right: 24px;
+        box-sizing: border-box;
+      }
+      @media (max-width: 991px) {
+        .container {
+          max-width: 100%;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .navbar .container {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+        .navbar-nav {
+          background: var(--primary);
+          border-radius: 0 0 12px 12px;
+          padding: 8px 0;
+        }
+        .navbar-collapse {
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+      }
+      @media (max-width: 575px) {
+        .container {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+      }
+      @media (max-width: 320px) {
+        section {
+          margin-bottom: 2.2rem !important;
+        }
+        .hero-btn,
+        .theme-switcher {
+          min-height: 44px;
+        }
+        body,
+        p,
+        li,
+        .footer,
+        .footer p,
+        .footer h4,
+        .course-col p,
+        .facililes-col p,
+        .testimonials-col p {
+          font-size: 15px !important;
+        }
+        .navbar-nav .nav-link {
+          min-height: 44px;
+          font-size: 1.05rem;
+        }
+        .navbar-toggler {
+          min-height: 44px;
+          min-width: 44px;
+        }
+        .container {
+          max-width: 100%;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        .header h1 {
+          font-size: clamp(1.1rem, 6vw, 1.5rem);
+        }
+        .cta h1 {
+          font-size: clamp(1rem, 5vw, 1.2rem);
+        }
+        .footer {
+          padding: 30px 0 10px 0;
+        }
+        .facililes-col {
+          padding: 18px 8px 12px 8px;
+        }
+        .facililes-col h3 {
+          font-size: 1.1rem;
+        }
+        .course-col {
+          padding: 18px 8px 12px 8px;
+          margin-bottom: 28px;
+          min-width: 0;
+          width: 100%;
+        }
+        .row.g-4 > [class^="col-"] {
+          flex: 0 0 100%;
+          max-width: 100%;
+          margin-bottom: 28px;
+        }
+        .row.g-4 {
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .theme-switcher {
+          top: 8px;
+          right: 8px;
+          font-size: 0.95rem;
+          padding: 6px 10px;
+          z-index: 1000;
+          width: 100%;
+          max-width: 220px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+        .navbar-brand img {
+          height: 32px !important;
+        }
+        .header .text-box {
+          padding: 0 8px;
+        }
+        .testimonials-col {
+          padding: 14px 8px;
+        }
+        .footer p,
+        .footer h4 {
+          padding-left: 8px;
+          padding-right: 8px;
+          word-break: break-word;
+          font-size: 0.98rem;
+        }
+        .footer .icon {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .footer .icon i {
+          margin: 6px 8px;
+        }
+        .hero-btn {
+          width: 100%;
+          display: block;
+          font-size: 1.05rem;
+          margin-top: 18px;
+        }
+        .testimonials-col h3 {
+          font-size: 1rem;
+        }
+        .facililes-col img {
+          height: auto !important;
+          max-height: 180px;
+        }
+        .campus-col img {
+          height: auto !important;
+          max-height: 220px;
+        }
+        .campus-col h3 {
+          font-size: 1.1rem;
+        }
+      }
+      /* Theme Switcher Button */
+      .theme-switcher {
+        position: fixed;
+        top: 18px;
+        right: 24px;
+        z-index: 999;
+        background: var(--footer);
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 18px;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(30, 34, 90, 0.1);
+        transition: background 0.2s;
+      }
+      .theme-switcher:focus {
+        outline: 2px solid var(--accent);
+      }
+    </style>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <!-- Theme Switcher Dropdown -->
+    <select
+      class="theme-switcher"
+      id="themeSwitcher"
+      title="Switch Color Theme"
+    >
+      <option value="vibrant">Vibrant (Sunset Pop)</option>
+      <option value="dark">Dark (Midnight Blue)</option>
+      <option value="pastel">Pastel (Minty Fresh)</option>
+    </select>
+    <!-- Bootstrap Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm w-100">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJPHthggJM42bizaYIsF1H0CK_1IbBSzMLA&s"
+            alt="Dyashin Logo"
+            style="height: 40px"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">ABOUT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">BLOG</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CONTACT</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Bootstrap Navbar End -->
+    <section class="header d-flex align-items-center justify-content-center">
+      <div class="container">
+        <div class="text-box mx-auto">
+          <h1>Welcome to <span class="cp">Dyashin Technosoft </span>Media</h1>
+          <p>
+            Dyashin Technosoft is a renowned Software Development and
+            Engineering services company led by a group of industry veterans.
+            With our passion, knowledge, and commitment to excellence, we
+            believe in transforming the arena of software development and
+            empowering customer businesses to embrace the future and achieve
+            amazing success. Our comprehensive range of custom software services
+            & Solutions are designed to assist our customers at all stages of
+            the SDLC, assuring project success from start to end and beyond.
+          </p>
+          <a href="InquiryPage.html" class="hero-btn">Visit us to know more</a>
+        </div>
+      </div>
+    </section>
+    <!-- -----------------service------------- -->
+    <section class="course py-5">
+      <div class="container">
+        <h1 class="mb-4 text-center">Service we offer</h1>
+        <p class="mb-5 text-center">
+          Dyashin Cares, the Corporate social responsibility (CSR) initiative of
+          Dyashin Technosoft Pvt Ltd, embodies our commitment to making a
+          positive impact on society. With a mission to uplift communities,
+          Dyashin Cares focuses on education, healthcare, and environmental
+          sustainability. Through strategic partnerships and hands-on
+          initiatives, we aim to create lasting change and contribute to the
+          well-being of the less privileged. From supporting educational
+          programs to providing healthcare resources and promoting environmental
+          stewardship, Dyashin Cares is dedicated to fostering a better future.
+          We believe in the transformative power of collective action, and
+          Dyashin Cares reflects our dedication to social responsibility and
+          philanthropy.
+        </p>
+        <div class="row g-4 justify-content-center mb-2">
+          <div class="col-md-4 d-flex">
+            <div class="course-col service-card-1 h-100 w-100">
+              <div class="card-accent"></div>
+              <h3>AD CAMPAIGN EXPERTISE</h3>
+              <p>
+                Our team boasts unparalleled expertise in designing and
+                executing ad campaigns across various platforms. From
+                conceptualization to implementation, we leverage industry best
+                practices and cutting-edge strategies to ensure maximum
+                visibility and impact for our clients.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="course-col service-card-2 h-100 w-100">
+              <div class="card-accent"></div>
+              <h3>STRATEGIC HASHTAG PROFICIENCY</h3>
+              <p>
+                Hashtags are more than just words; they're powerful tools for
+                amplifying brand visibility and engagement. Our strategic
+                hashtag proficiency involves meticulous research and selection
+                to ensure relevance, reach, and resonance with target audiences
+                across social media platforms.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="course-col service-card-3 h-100 w-100">
+              <div class="card-accent"></div>
+              <h3>ALGORITHMIC MASTERY</h3>
+              <p>
+                In the ever-evolving landscape of digital marketing,
+                understanding and mastering algorithms is essential for staying
+                ahead of the competition. Our team of experts stays abreast of
+                algorithmic updates and employs advanced techniques to optimize
+                campaign performance, ensuring maximum exposure and
+                effectiveness.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4 d-flex">
+            <div class="course-col service-card-4 h-100 w-100">
+              <div class="card-accent"></div>
+              <h3>INSIGHTS DRIVEN BY DATA</h3>
+              <p>
+                Data serves as the backbone of our decision-making process.
+                Through comprehensive data analysis, we uncover valuable
+                insights into consumer preferences, behavior patterns, and
+                market trends. These insights inform every aspect of our
+                campaign strategy, enabling us to tailor our approach for
+                optimal results.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="course-col service-card-5 h-100 w-100">
+              <div class="card-accent"></div>
+              <h3>CREATIVE CONTENT INNOVATION</h3>
+              <p>
+                Creativity lies at the heart of successful campaigns. We pride
+                ourselves on our ability to push boundaries and deliver
+                innovative, captivating content that cuts through the noise and
+                leaves a lasting impression on audiences.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="course-col service-card-6 h-100 w-100">
+              <div class="card-accent"></div>
+              <h3>TARGET AUDIENCE ENGAGEMENT EXCELLENCE</h3>
+              <p>
+                Engaging with the right audience is key to driving meaningful
+                interactions and conversions. Leveraging our in-depth
+                understanding of consumer behavior and preferences, we craft
+                tailored engagement strategies that foster genuine connections
+                and drive brand affinity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <svg
+      class="section-divider"
+      viewBox="0 0 1440 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="#e0e7ef"
+        d="M0,32 C360,64 1080,0 1440,32 L1440,48 L0,48 Z"
+      ></path>
+    </svg>
+    <!-- ------ Campus---- -->
+    <section class="campus py-5">
+      <div class="container">
+        <h1 align="center" class="mb-4">Our Global campus</h1>
+        <p align="center" class="mb-5">
+          Our company excels in project services, delivering end-to-end
+          solutions with precision. From planning to execution, we ensure
+          seamless implementation, achieving client goals efficiently and
+          effectively. We provide custom software services which is designed to
+          assist our customers at all stages of the SDLC/PDLC assuring project
+          success from start to end and beyond.
+        </p>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4">
+            <div class="campus-col position-relative h-100">
+              <img
+                src="img/london.png"
+                class="img-fluid w-100"
+                style="height: 300px; object-fit: cover"
+              />
+              <div class="layer d-flex align-items-end justify-content-center">
+                <h3>LONDON</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="campus-col position-relative h-100">
+              <img
+                src="img/newyork.png"
+                class="img-fluid w-100"
+                style="height: 300px; object-fit: cover"
+              />
+              <div class="layer d-flex align-items-end justify-content-center">
+                <h3>NEW YORK</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="campus-col position-relative h-100">
+              <img
+                src="img/washington.png"
+                class="img-fluid w-100"
+                style="height: 300px; object-fit: cover"
+              />
+              <div class="layer d-flex align-items-end justify-content-center">
+                <h3>HAJIPUR</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- -------facilites-------- -->
+    <section class="facilities py-5">
+      <div class="container">
+        <h1 class="mb-4 text-center">Our facilities</h1>
+        <p class="mb-5 text-center">
+          Dyashin Cares, the Corporate social responsibility (CSR) initiative of
+          Dyashin Technosoft Pvt Ltd, embodies our commitment to making a
+          positive impact on society. With a mission to uplift communities,
+          Dyashin Cares focuses on education, healthcare, and environmental
+          sustainability. Through strategic partnerships and hands-on
+          initiatives, we aim to create lasting change and contribute to the
+          well-being of the less privileged. From supporting educational
+          programs to providing healthcare resources and promoting environmental
+          stewardship, Dyashin Cares is dedicated to fostering a better future.
+          We believe in the transformative power of collective action, and
+          Dyashin Cares reflects our dedication to social responsibility and
+          philanthropy.
+        </p>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4 d-flex">
+            <div class="facililes-col h-100 w-100">
+              <div class="card-accent"></div>
+              <img
+                src="img/fac1.jpg"
+                class="img-fluid rounded mb-3"
+                style="height: 180px; object-fit: cover; width: 100%"
+              />
+              <h3>Comprehensive Instagram Pages Marketing Services</h3>
+              <p>
+                From novice entrepreneurs to seasoned industry leaders, our
+                tailored Instagram marketing strategies guarantee compelling
+                results. Our expert team stays abreast of the latest trends to
+                provide top-tier services across diverse business sectors.
+                Elevate your brand's presence with us today!
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="facililes-col h-100 w-100">
+              <div class="card-accent"></div>
+              <img
+                src="img/basketball.png"
+                class="img-fluid rounded mb-3"
+                style="height: 180px; object-fit: cover; width: 100%"
+              />
+              <h3>Values and Collaboration</h3>
+              <p>
+                At the heart of our professional approach lies integrity and
+                transparency. We prioritize open communication and harmonious
+                partnerships with both clients and Instagram pages. Trust us to
+                uphold these values in every interaction
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex">
+            <div class="facililes-col h-100 w-100">
+              <div class="card-accent"></div>
+              <img
+                src="img/cafeteria.png"
+                class="img-fluid rounded mb-3"
+                style="height: 180px; object-fit: cover; width: 100%"
+              />
+              <h3>Strengthening Bonds through Cooperation</h3>
+              <p>
+                Our philosophy centers on open dialogue and collaboration,
+                nurturing enduring relationships with clients and Instagram
+                pages. Through transparent communication and mutual cooperation,
+                we pave the way for mutual growth and success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <svg
+      class="section-divider"
+      viewBox="0 0 1440 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="#e0e7ef"
+        d="M0,32 C360,64 1080,0 1440,32 L1440,48 L0,48 Z"
+      ></path>
+    </svg>
+    <!-- -----------------testimonials------------- -->
+    <section class="testimonials py-5">
+      <div class="container">
+        <h1 class="mb-4 text-center">Hear What Our Clients Have to Say</h1>
+        <p class="mb-5 text-center">
+          Elevate your trust in us through heartfelt testimonials, spotlighting
+          the positive outcomes our products and services deliver for genuine
+          promotional excellence.
+        </p>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6">
+            <div class="testimonials-col h-100">
+              <div class="card-accent"></div>
+              <!-- <img src="img/user5.jpeg" alt="Amit Mohanty" /> -->
+              <div>
+                <p>
+                  Navigating Instagram promotions was a challenge until we
+                  partnered with this agency. Their ad campaign expertise turned
+                  our efforts around. The ads seamlessly integrated into feeds,
+                  leading to higher user engagement and increased brand
+                  visibility. A game-changer for our business
+                </p>
+                <h3>Amit Mohanty</h3>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="testimonials-col h-100">
+              <div class="card-accent"></div>
+              <!-- <img src="img/user3.png" alt="Amit Kumar" /> -->
+              <div>
+                <p>
+                  The Instagram promotion agency's ad campaign expertise
+                  exceeded my expectations. Their ability to seamlessly
+                  integrate ads into users' feeds was remarkable. The result?
+                  Higher engagement, increased traffic, and conversions that
+                  made a real impact on our bottom line.
+                </p>
+                <h3>Amit Kumar</h3>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <svg
+      class="section-divider"
+      viewBox="0 0 1440 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="#e0e7ef"
+        d="M0,32 C360,64 1080,0 1440,32 L1440,48 L0,48 Z"
+      ></path>
+    </svg>
+    <!-- ------------------call to action---------------- -->
+    <section class="cta my-5">
+      <div class="container">
+        <h1>
+          Enroll for our various online courses <br />
+          anywhere from the world
+        </h1>
+        <a href="#" class="hero-btn">CONTACT US</a>
+      </div>
+    </section>
+    <!-- ------------footer----------- -->
+    <section class="footer">
+      <h4>About Us</h4>
+      <p>
+        Our agency specializes in meticulously crafting Instagram ad campaigns
+        that seamlessly integrate into users' feeds,<br />
+        delivering an immersive and non-intrusive experience. Our proven ability
+        to design ads native to the platform ensures<br />
+        your message resonates authentically, driving impactful engagement and
+        conversions
+      </p>
+      <div class="icon">
+        <i class="fa fa-youtube" data-tooltip="YouTube"></i>
+        <i class="fa fa-instagram" data-tooltip="Instagram"></i>
+        <i class="fa fa-facebook" data-tooltip="Facebook"></i>
+        <i class="fa fa-linkedin" data-tooltip="LinkedIn"></i>
+        <i class="fa fa-twitter" data-tooltip="Twitter"></i>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"> </i> Amit Kumar Mohanty</p>
+    </section>
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to Top">&#8679;</button>
+    <!--------function------->
+    <script>
+      // Navbar mobile menu (existing)
+      var navLinks = document.getElementById("navLinks");
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
+      // Back to Top Button
+      const backToTop = document.getElementById("backToTop");
+      window.onscroll = function () {
+        if (
+          document.body.scrollTop > 200 ||
+          document.documentElement.scrollTop > 200
+        ) {
+          backToTop.style.display = "block";
+        } else {
+          backToTop.style.display = "none";
+        }
+      };
+      backToTop.onclick = function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+      // Theme Switcher Logic
+      const themeSwitcher = document.getElementById("themeSwitcher");
+      function setTheme(theme) {
+        document.body.classList.remove(
+          "theme-vibrant",
+          "theme-dark",
+          "theme-pastel"
+        );
+        document.body.classList.add("theme-" + theme);
+        localStorage.setItem("colorTheme", theme);
+      }
+      // On load, set theme from localStorage or default
+      const savedTheme = localStorage.getItem("colorTheme") || "vibrant";
+      setTheme(savedTheme);
+      themeSwitcher.value = savedTheme;
+      themeSwitcher.addEventListener("change", function () {
+        setTheme(this.value);
+      });
+      // Simple Testimonial Carousel (if more testimonials are added)
+      // You can expand this for more advanced carousel features
+      // For now, Bootstrap's carousel can be used if you wrap testimonials in a carousel structure
+    </script>
+  </body>
+</html>

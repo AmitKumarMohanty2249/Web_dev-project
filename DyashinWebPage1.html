@@ -1,0 +1,5345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dyashin Technosoft</title>
+
+    <!-- Google Fonts: Montserrat & Open Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts for custom heading/button -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @media (max-width: 480px) {
+        body {
+          min-width: 320px;
+        }
+        #home h1 {
+          font-size: 2.1rem !important;
+        }
+        .btn.hero-btn {
+          font-size: 1rem;
+          padding: 0.7rem 1.6rem;
+        }
+        .service-card,
+        .product-card,
+        .team-card {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+      /* 2. Foldables / tablets (481-992 px) */
+      @media (min-width: 481px) and (max-width: 992px) {
+        .service-card,
+        .product-card {
+          width: calc(50% - 1rem);
+        }
+        .team-card {
+          max-width: 220px;
+        }
+      }
+      /* 3. Extra-large desktops (≥1400 px) */
+      @media (min-width: 1400px) {
+        section {
+          max-width: 1180px;
+        }
+      }
+      /* 4. Landscape height < 500 px (iPhone SE, XR) */
+      @media (max-height: 500px) and (orientation: landscape) {
+        #home {
+          min-height: 100vh;
+        }
+        #home img.hero-img {
+          max-width: 160px;
+        }
+      }
+      /* 5. Print styles */
+      @media print {
+        .navbar,
+        #backToTop,
+        .footer-modern,
+        iframe {
+          display: none;
+        }
+        body {
+          background: #fff;
+          color: #000;
+        }
+      }
+      :root {
+        --dy-blue: #003366;
+        --dy-accent: #007bff;
+        --dy-light: #f4f4f4;
+        --navbar-height: 72px;
+      }
+      /* General body enhancements */
+      body {
+        background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+        color: #1a1a1a;
+        transition: background-color 0.5s ease;
+        scroll-behavior: smooth;
+        font-family: "Open Sans", Arial, sans-serif;
+      }
+      /* Parallax Hero Section */
+      #home {
+        background: url("https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=1500&q=80")
+          center/cover fixed no-repeat;
+        position: relative;
+        overflow: hidden;
+        min-height: 92vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #home::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          120deg,
+          rgba(0, 33, 71, 0.82) 0%,
+          rgba(0, 123, 255, 0.38) 100%
+        );
+        z-index: 1;
+      }
+      #home > .container {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 70vh;
+        text-align: center;
+      }
+      #home h1 {
+        color: #fff;
+        font-size: 3.5rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+        margin-bottom: 1.1rem;
+      }
+      #home .hero-subtitle {
+        color: #e6f0ff;
+        font-size: 1.35rem;
+        font-weight: 500;
+        margin-bottom: 2.2rem;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+      }
+      #home .hero-btn {
+        margin-top: 1.2rem;
+        font-size: 1.18rem;
+        padding: 0.85rem 2.5rem;
+        border-radius: 32px;
+        font-weight: 700;
+        box-shadow: 0 4px 18px #007bff44;
+      }
+      #home img.hero-img {
+        margin-top: 2.5rem;
+        border-radius: 50%;
+        box-shadow: 0 8px 32px #00336655;
+        max-width: 260px;
+        width: 100%;
+        border: 6px solid #fff;
+        background: #fff;
+        object-fit: cover;
+      }
+      .hero-wave {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        width: 100%;
+        z-index: 2;
+        pointer-events: none;
+      }
+      /* Navbar enhancements */
+      .navbar {
+        background: linear-gradient(to right, #002147, #0052cc);
+        box-shadow: 0 4px 14px rgb(0 82 204 / 0.45);
+        transition: background-color 0.3s, box-shadow 0.3s, padding 0.3s;
+        padding: 18px 0;
+        height: var(--navbar-height);
+      }
+      .navbar.shrink {
+        padding: 6px 0;
+        background: #002147ee;
+        box-shadow: 0 2px 10px rgb(0 33 71 / 0.25);
+      }
+      .navbar .nav-link {
+        color: #e6f0ff;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+      .navbar .nav-link:hover,
+      .navbar .nav-link:focus {
+        color: #ffd24c;
+        text-shadow: 0 0 10px #ffd24c;
+      }
+      .navbar-toggler {
+        border-color: #ffd24c;
+      }
+      .navbar-toggler-icon {
+        filter: invert(96%) sepia(98%) saturate(0%) hue-rotate(280deg)
+          brightness(111%) contrast(96%);
+      }
+      /* Section style with subtle background & rounded edges */
+      section {
+        padding: 70px 0 70px 0;
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        margin-bottom: 56px;
+        transition: box-shadow 0.3s, transform 0.3s;
+        opacity: 0;
+        transform: translateY(40px);
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      section.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      section:hover {
+        box-shadow: 0 20px 60px rgb(0 82 204 / 0.3);
+        transform: translateY(-5px);
+      }
+      /* Alternate section backgrounds for separation */
+      section.bg-light {
+        background: #f7fafd;
+      }
+      section.bg-white {
+        background: #fff;
+      }
+      /* Section divider */
+      .section-divider {
+        width: 100%;
+        height: 32px;
+        background: linear-gradient(to right, #e3eafc 0%, #fff 100%);
+        margin: 0 0 0 0;
+        border: none;
+        display: block;
+      }
+      /* Heading polish */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: #003366;
+        letter-spacing: 0.06rem;
+        text-transform: uppercase;
+        text-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+        margin-bottom: 1.2rem;
+        line-height: 1.2;
+        font-family: "Montserrat", Arial, sans-serif;
+      }
+      h1 {
+        font-size: 3.2rem;
+        margin-bottom: 0.4em;
+        font-weight: 800;
+      }
+      h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+      }
+      h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+      p,
+      li {
+        font-size: 1.08rem;
+        line-height: 1.7;
+      }
+      /* Buttons style and hover effects */
+      .btn-primary {
+        background-color: #007bff;
+        border: none;
+        box-shadow: 0 4px 15px rgb(0 123 255 / 0.5);
+        font-weight: 700;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary:hover,
+      .btn-primary:focus {
+        background-color: #0056b3;
+        box-shadow: 0 6px 20px rgb(0 86 179 / 0.7);
+        transform: scale(1.05);
+      }
+      /* Ripple effect for buttons */
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        background-color: rgba(255, 255, 255, 0.7);
+        pointer-events: none;
+      }
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+      /* Fade-in animation improvement with delay capability */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.9s forwards;
+      }
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* Carousel tweaks with rounded corners and shadow */
+      .carousel-inner img {
+        border-radius: 18px;
+        box-shadow: 0 8px 24px rgb(0 82 204 / 0.18);
+        transition: transform 0.4s;
+        max-height: 340px;
+        object-fit: cover;
+        width: 100%;
+        margin: 0 auto;
+        background: #e3eafc;
+      }
+      .carousel-inner img:hover {
+        transform: scale(1.02);
+      }
+      .carousel-caption {
+        background: rgba(0, 51, 102, 0.65);
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        box-shadow: 0 2px 12px #00336633;
+      }
+      /* Gallery image hover */
+      .gallery img {
+        border-radius: 16px;
+        box-shadow: 0 6px 18px rgba(0, 51, 102, 0.13);
+        transition: box-shadow 0.3s, transform 0.3s;
+        cursor: pointer;
+        object-fit: cover;
+        aspect-ratio: 4/3;
+        width: 100%;
+        height: 220px;
+        background: #e3eafc;
+        margin-bottom: 0.5rem;
+      }
+      .gallery img:hover {
+        box-shadow: 0 20px 50px rgb(0 82 204 / 0.25);
+        transform: translateY(-6px) scale(1.04);
+      }
+      /* Lightbox Modal */
+      .lightbox-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox-modal.active {
+        display: flex;
+      }
+      .lightbox-modal img {
+        max-width: 90vw;
+        max-height: 80vh;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px #000a;
+      }
+      .lightbox-modal .close-btn {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        font-size: 2.5rem;
+        color: #fff;
+        cursor: pointer;
+        z-index: 10001;
+        background: none;
+        border: none;
+      }
+      /* Footer enhancements */
+      footer {
+        background: linear-gradient(to right, #002147, #004aad);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.06rem;
+        box-shadow: 0 -4px 18px rgb(0 33 71 / 0.7);
+        padding: 25px 0;
+        transition: background-color 0.4s;
+      }
+      footer p {
+        margin: 0;
+      }
+      /* Form inputs and labels polish */
+      form label {
+        font-weight: 600;
+        color: #003366;
+        margin-bottom: 0.3rem;
+      }
+      form input,
+      form textarea {
+        border-radius: 10px;
+        border: 1.8px solid #007bff88;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        font-size: 1.08rem;
+        padding: 0.7rem 1rem;
+      }
+      form input:focus,
+      form textarea:focus {
+        border-color: #0056b3;
+        box-shadow: 0 0 8px #0056b3aa;
+        outline: none;
+      }
+      form .btn-primary {
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+        padding: 0.7rem 2.2rem;
+      }
+      /* Back to Top Button */
+      #backToTop {
+        display: none;
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 999;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 52px;
+        height: 52px;
+        font-size: 2rem;
+        box-shadow: 0 4px 16px #00336655;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
+      #backToTop:hover {
+        background: #0056b3;
+        transform: scale(1.1);
+      }
+      /* Newsletter Success Animation */
+      .newsletter-success {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #28a745;
+        margin-top: 1rem;
+        animation: popIn 0.7s;
+      }
+      @keyframes popIn {
+        0% {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        80% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      /* Responsive tweak for hero image */
+      @media (max-width: 576px) {
+        h1 {
+          font-size: 2.4rem;
+        }
+        #backToTop {
+          right: 12px;
+          bottom: 12px;
+        }
+        #home img {
+          max-width: 98vw;
+          height: auto;
+        }
+        .gallery img {
+          height: 120px;
+        }
+        section {
+          padding: 36px 0 36px 0;
+          border-radius: 10px;
+        }
+      }
+
+      body {
+        background-color: var(--dy-light);
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: linear-gradient(to right, var(--dy-blue), var(--dy-accent));
+      }
+      .navbar-brand img {
+        height: 40px;
+      }
+
+      /* Section padding */
+      section {
+        padding: 80px 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: var(--dy-blue);
+        font-weight: 700;
+      }
+
+      .btn-primary {
+        background-color: var(--dy-accent);
+        border: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      /* Fade-in effect */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 1s forwards;
+      }
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .gallery img {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      footer {
+        background-color: var(--dy-blue);
+        color: white;
+        padding: 20px 0;
+      }
+
+      /* Enhanced Team Section */
+      .team-section {
+        background: #f7fafd;
+        border-radius: 20px;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        padding: 70px 0;
+        max-width: 1100px;
+        margin: 56px auto;
+        text-align: center;
+      }
+      .team-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        justify-content: center;
+        margin-top: 2.5rem;
+      }
+      .team-card {
+        background: linear-gradient(135deg, #f7fafd 60%, #e3eafc 100%);
+        border-radius: 16px;
+        box-shadow: 0 4px 18px #00336611;
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        text-align: center;
+        width: 270px;
+        transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+        position: relative;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .team-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .team-card:hover {
+        box-shadow: 0 8px 32px #00336633;
+        transform: translateY(-6px) scale(1.03);
+        background: linear-gradient(135deg, #e3eafc 60%, #f7fafd 100%);
+      }
+      .team-card img {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 12px #00336622;
+        border: 4px solid #fff;
+        background: #fff;
+      }
+      .team-card h5 {
+        margin-bottom: 0.3rem;
+        font-size: 1.15rem;
+      }
+      .team-card .team-title {
+        color: #007bff;
+        font-size: 1rem;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+        display: inline-block;
+        background: #e3eafc;
+        border-radius: 12px;
+        padding: 0.2rem 0.8rem;
+        margin-top: 0.2rem;
+      }
+      .team-card p {
+        font-size: 0.98rem;
+        color: #444;
+        margin-bottom: 1.1rem;
+      }
+      .team-social {
+        margin-top: 0.7rem;
+      }
+      .team-social a {
+        color: #007bff;
+        margin: 0 0.3rem;
+        font-size: 1.3rem;
+        transition: color 0.2s;
+        vertical-align: middle;
+        display: inline-block;
+      }
+      .team-social a:hover {
+        color: #003366;
+      }
+      /* Enhanced Testimonials Section */
+      .testimonials-section {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        padding: 70px 0;
+        max-width: 900px;
+        margin: 56px auto;
+        text-align: center;
+      }
+      .testimonial-carousel .carousel-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 320px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .testimonial-carousel .carousel-item.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .testimonial-card {
+        background: linear-gradient(135deg, #f7fafd 60%, #e3eafc 100%);
+        border-radius: 16px;
+        box-shadow: 0 4px 18px #00336611;
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        text-align: center;
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        position: relative;
+        transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+      }
+      .testimonial-carousel .carousel-item.active .testimonial-card {
+        box-shadow: 0 8px 32px #00336633;
+        background: linear-gradient(135deg, #e3eafc 60%, #f7fafd 100%);
+      }
+      .testimonial-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 2px 12px #00336622;
+        border: 4px solid #fff;
+        background: #fff;
+      }
+      .testimonial-quote {
+        font-size: 1.15rem;
+        font-style: italic;
+        color: #003366;
+        margin-bottom: 1.1rem;
+      }
+      .testimonial-name {
+        font-weight: 700;
+        color: #007bff;
+        font-size: 1.05rem;
+        margin-bottom: 0.2rem;
+      }
+      .testimonial-role {
+        color: #666;
+        font-size: 0.98rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+      .testimonial-stars {
+        color: #ffd24c;
+        font-size: 1.2rem;
+        margin-bottom: 0.7rem;
+      }
+      /* Footer Social Icons */
+      .footer-social {
+        margin-top: 1rem;
+      }
+      .footer-social a {
+        color: #fff;
+        margin: 0 0.5rem;
+        font-size: 1.6rem;
+        transition: color 0.2s;
+        vertical-align: middle;
+      }
+      .footer-social a:hover {
+        color: #ffd24c;
+      }
+      /* Services Section */
+      .services-section {
+        background: #f7fafd;
+        border-radius: 20px;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        padding: 70px 0;
+        max-width: 1100px;
+        margin: 56px auto;
+        text-align: center;
+      }
+      .service-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        justify-content: center;
+        margin-top: 2.5rem;
+      }
+      .service-card {
+        background: linear-gradient(135deg, #f7fafd 60%, #e3eafc 100%);
+        border-radius: 16px;
+        box-shadow: 0 4px 18px #00336611;
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        text-align: center;
+        width: 300px;
+        transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+        position: relative;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .service-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .service-card:hover {
+        box-shadow: 0 8px 32px #00336633;
+        transform: translateY(-6px) scale(1.03);
+        background: linear-gradient(135deg, #e3eafc 60%, #f7fafd 100%);
+      }
+      .service-card .service-icon {
+        font-size: 2.7rem;
+        color: #007bff;
+        margin-bottom: 1.1rem;
+        display: inline-block;
+        transition: color 0.3s;
+      }
+      .service-card:hover .service-icon {
+        color: #ffd24c;
+      }
+      .service-card h5 {
+        margin-bottom: 0.7rem;
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: #003366;
+      }
+      .service-card p {
+        font-size: 1.03rem;
+        color: #444;
+        margin-bottom: 0.7rem;
+      }
+      .service-card .learn-more {
+        display: inline-block;
+        margin-top: 0.5rem;
+        color: #007bff;
+        font-weight: 600;
+        font-size: 1.01rem;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .service-card .learn-more:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+      /* Products Section */
+      .products-section {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        padding: 70px 0;
+        max-width: 1100px;
+        margin: 56px auto;
+        text-align: center;
+      }
+      .product-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        justify-content: center;
+        margin-top: 2.5rem;
+      }
+      .product-card {
+        background: linear-gradient(135deg, #f7fafd 60%, #e3eafc 100%);
+        border-radius: 16px;
+        box-shadow: 0 4px 18px #00336611;
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        text-align: center;
+        width: 320px;
+        transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid transparent;
+      }
+      .product-card:hover {
+        box-shadow: 0 8px 32px #00336633;
+        transform: translateY(-6px) scale(1.03);
+        background: linear-gradient(135deg, #e3eafc 60%, #f7fafd 100%);
+        border: 2px solid #007bff;
+      }
+      .product-card img {
+        border-radius: 14px;
+        box-shadow: 0 4px 16px #00336622;
+        width: 100%;
+        max-width: 220px;
+        margin-bottom: 1.2rem;
+        object-fit: cover;
+        background: #e3eafc;
+      }
+      .product-card h5 {
+        margin-bottom: 0.7rem;
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: #003366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .product-card .product-icon {
+        font-size: 1.2rem;
+        color: #007bff;
+        vertical-align: middle;
+      }
+      .product-features {
+        text-align: left;
+        margin: 0 auto 1.1rem auto;
+        padding-left: 1.1rem;
+        max-width: 220px;
+      }
+      .product-features li {
+        font-size: 0.98rem;
+        color: #444;
+        margin-bottom: 0.3rem;
+        list-style: disc inside;
+      }
+      .product-card p {
+        font-size: 1.03rem;
+        color: #444;
+        margin-bottom: 1.1rem;
+      }
+      .product-card .learn-more {
+        display: inline-block;
+        margin-top: auto;
+        color: #007bff;
+        font-weight: 600;
+        font-size: 1.01rem;
+        text-decoration: none;
+        transition: color 0.2s;
+        border-radius: 24px;
+        padding: 0.5rem 1.3rem;
+        background: #e3eafc;
+        box-shadow: 0 2px 8px #00336611;
+      }
+      .product-card .learn-more:hover {
+        color: #fff;
+        background: #007bff;
+        text-decoration: none;
+      }
+      .product-badge {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        background: #ffd24c;
+        color: #003366;
+        font-size: 0.92rem;
+        font-weight: 700;
+        padding: 0.3rem 0.9rem;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px #00336622;
+        letter-spacing: 0.03em;
+      }
+      .product-tagline {
+        font-size: 0.98rem;
+        color: #007bff;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.01em;
+      }
+      /* Gallery Section */
+      .gallery-section {
+        background: #f7fafd;
+        border-radius: 20px;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        padding: 70px 0;
+        max-width: 1100px;
+        margin: 56px auto;
+        text-align: center;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+      @media (max-width: 900px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 576px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery-item img {
+          height: 110px;
+        }
+      }
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 4px 18px #00336611;
+        background: #e3eafc;
+        cursor: pointer;
+        transition: box-shadow 0.3s, transform 0.3s;
+      }
+      .gallery-item:hover {
+        box-shadow: 0 8px 32px #00336633;
+        transform: translateY(-4px) scale(1.03);
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 16px;
+        transition: transform 0.3s;
+        display: block;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.07);
+      }
+      .gallery-caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 33, 71, 0.85) 60%,
+          rgba(0, 33, 71, 0.05) 100%
+        );
+        color: #fff;
+        font-size: 1.01rem;
+        font-weight: 600;
+        padding: 0.7rem 1rem 0.5rem 1rem;
+        opacity: 0;
+        transition: opacity 0.3s;
+        border-radius: 0 0 16px 16px;
+        pointer-events: none;
+      }
+      .gallery-item:hover .gallery-caption {
+        opacity: 1;
+      }
+      .testimonial-card .top-client-badge {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        background: #ffd24c;
+        color: #003366;
+        font-size: 0.92rem;
+        font-weight: 700;
+        padding: 0.3rem 0.9rem;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px #00336622;
+        letter-spacing: 0.03em;
+        z-index: 2;
+      }
+      .testimonial-card.alt-bg {
+        background: linear-gradient(135deg, #e3eafc 60%, #f7fafd 100%);
+      }
+      .testimonial-quote-icon {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 2.5rem;
+        color: #e3eafc;
+        opacity: 0.5;
+        z-index: 1;
+        pointer-events: none;
+      }
+      /* Testimonial Company Logo */
+      .testimonial-logo {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+        border-radius: 8px;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        background: #fff;
+        box-shadow: 0 1px 4px #00336622;
+      }
+      .testimonial-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 0.2rem;
+        flex-wrap: wrap;
+      }
+      .testimonial-location {
+        color: #007bff;
+        font-size: 0.97rem;
+        margin-left: 0.5rem;
+        font-weight: 500;
+      }
+      /* Two testimonials per slide on desktop */
+      .testimonial-row {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .testimonial-card {
+        flex: 1 1 0;
+        min-width: 280px;
+        max-width: 420px;
+        margin: 0 auto;
+        position: relative;
+      }
+      @media (max-width: 900px) {
+        .testimonial-row {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+      }
+      /* Animated star ratings */
+      .testimonial-stars span {
+        display: inline-block;
+        opacity: 0;
+        transform: scale(0.7);
+        animation: starPop 0.5s forwards;
+      }
+      .testimonial-stars span:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .testimonial-stars span:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+      .testimonial-stars span:nth-child(3) {
+        animation-delay: 0.25s;
+      }
+      .testimonial-stars span:nth-child(4) {
+        animation-delay: 0.35s;
+      }
+      .testimonial-stars span:nth-child(5) {
+        animation-delay: 0.45s;
+      }
+      @keyframes starPop {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      /* Read More link */
+      .read-more-link {
+        color: #007bff;
+        font-weight: 600;
+        font-size: 0.98rem;
+        cursor: pointer;
+        margin-left: 0.3rem;
+        text-decoration: underline;
+      }
+      .read-more-link:hover {
+        color: #0056b3;
+      }
+      /* Testimonial video */
+      .testimonial-video {
+        width: 100%;
+        max-width: 420px;
+        aspect-ratio: 16/9;
+        border-radius: 16px;
+        box-shadow: 0 4px 18px #00336611;
+        margin: 0 auto 1.2rem auto;
+        background: #000;
+        overflow: hidden;
+      }
+      /* CTA below testimonials */
+      .testimonial-cta {
+        margin-top: 2.5rem;
+        text-align: center;
+      }
+      .testimonial-cta .btn {
+        font-size: 1.15rem;
+        padding: 0.8rem 2.5rem;
+        border-radius: 32px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #003366 0%, #007bff 100%);
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px 18px #00336633;
+        transition: background 0.3s;
+      }
+      .testimonial-cta .btn:hover {
+        background: linear-gradient(90deg, #007bff 0%, #003366 100%);
+        color: #ffd24c;
+      }
+      /* Make Netflix testimonial image smaller */
+      .testimonial-img.netflix-img {
+        width: 60px;
+        height: 60px;
+      }
+      /* Newsletter Section Ultimate Polish */
+      .newsletter-section-bg {
+        background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><rect fill="%23e3eafc" width="100%25" height="100%25"/><circle fill="%23f7fafd" fill-opacity="0.7" cx="40" cy="40" r="36"/><circle fill="%23e3eafc" fill-opacity="0.5" cx="200" cy="120" r="60"/><circle fill="%23f7fafd" fill-opacity="0.7" cx="90" cy="200" r="40"/></svg>');
+        background-size: cover;
+        padding: 70px 0;
+        border-radius: 20px;
+        margin: 56px auto;
+      }
+      .newsletter-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px #00336622, 0 1.5px 8px #28a74522;
+        padding: 2.7rem 1.5rem 2.2rem 1.5rem;
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .newsletter-card h2 {
+        font-family: "Montserrat", "Quicksand", Arial, sans-serif;
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+        color: #003366;
+        font-weight: 800;
+        letter-spacing: 0.01em;
+      }
+      .newsletter-divider {
+        height: 3px;
+        width: 60px;
+        background: #28a745;
+        border-radius: 2px;
+        margin: 0.7rem auto 1.1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .newsletter-divider i {
+        color: #007bff;
+        font-size: 1.3rem;
+        position: absolute;
+        left: 50%;
+        top: -0.7rem;
+        transform: translateX(-50%);
+        background: #e3eafc;
+        border-radius: 50%;
+        padding: 0.2rem;
+      }
+      .newsletter-illustration {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 1.1rem auto;
+        display: block;
+        border-radius: 50%;
+        box-shadow: 0 2px 12px #00336611;
+        background: #fff;
+        object-fit: cover;
+      }
+      .newsletter-subtitle {
+        color: #007bff;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        font-size: 1.08rem;
+        margin-bottom: 1.1rem;
+      }
+      .newsletter-form-area {
+        width: 100%;
+        max-width: 370px;
+        margin: 0.7rem auto 0.7rem auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+      }
+      .newsletter-floating-label {
+        position: relative;
+        margin-bottom: 1.2rem;
+        text-align: left;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-floating-label input {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #007bff33;
+        background: transparent;
+        font-size: 1.08rem;
+        padding: 1.2rem 0.5rem 0.3rem 0.5rem;
+        outline: none;
+        transition: border-color 0.3s;
+        font-family: "Quicksand", Arial, sans-serif;
+      }
+      .newsletter-floating-label label {
+        position: absolute;
+        left: 0.5rem;
+        top: 1.2rem;
+        color: #888;
+        font-size: 1.05rem;
+        pointer-events: none;
+        transition: 0.2s;
+        background: transparent;
+        z-index: 1;
+      }
+      .newsletter-floating-label input:focus + label,
+      .newsletter-floating-label input:not(:placeholder-shown) + label {
+        top: -1.1rem;
+        left: 0.1rem;
+        font-size: 0.93rem;
+        color: #007bff;
+        background: #f7fafd;
+        padding: 0 0.2rem;
+        z-index: 2;
+      }
+      .newsletter-helper {
+        font-size: 0.97rem;
+        color: #888;
+        margin-top: -0.8rem;
+        margin-bottom: 0.7rem;
+        text-align: left;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-card .btn-animated {
+        animation: pulse 1.5s infinite;
+        width: 100%;
+        max-width: 350px;
+        margin: 0.7rem auto 0.2rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Montserrat", Arial, sans-serif;
+        font-size: 1.13rem;
+        font-weight: 700;
+        gap: 0.5rem;
+      }
+      .newsletter-btn-arrow {
+        display: inline-block;
+        animation: arrowBounce 1.2s infinite alternate;
+        font-size: 1.3rem;
+        color: #fff;
+        margin-left: 0.2rem;
+      }
+      @keyframes arrowBounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(5px);
+        }
+      }
+      .newsletter-checkbox {
+        margin-top: 0.7rem;
+        margin-bottom: 0.7rem;
+        text-align: left;
+        font-size: 0.98rem;
+        color: #003366;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-social {
+        margin-top: 1.2rem;
+        margin-bottom: 0.2rem;
+      }
+      .newsletter-privacy {
+        font-size: 0.97rem;
+        color: #666;
+        margin-top: 0.7rem;
+        margin-bottom: 0.2rem;
+      }
+      .newsletter-benefits {
+        text-align: left;
+        margin: 1.2rem auto 0.7rem auto;
+        max-width: 320px;
+        color: #003366;
+        font-size: 1.05rem;
+        padding-left: 1.2rem;
+        background: #f7fafd;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px #00336608;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      .newsletter-testimonial {
+        font-size: 1.01rem;
+        color: #007bff;
+        font-style: italic;
+        margin-top: 1.1rem;
+        margin-bottom: 0.5rem;
+        background: #e3eafc;
+        border-radius: 10px;
+        padding: 0.7rem 1rem;
+        box-shadow: 0 1px 4px #00336611;
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @media (max-width: 600px) {
+        .newsletter-card {
+          padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+          max-width: 98vw;
+        }
+        .newsletter-form-area {
+          max-width: 98vw;
+        }
+        .newsletter-card .btn-animated {
+          max-width: 98vw;
+        }
+      }
+      .newsletter-input-group {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px #00336611;
+        padding: 0.2rem 0.5rem 0.2rem 0.8rem;
+        margin-bottom: 1.2rem;
+        border: 1.5px solid #007bff33;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-input-group .bi-envelope {
+        color: #007bff;
+        font-size: 1.3rem;
+        margin-right: 0.6rem;
+      }
+      .newsletter-input-group input[type="email"],
+      .newsletter-input-group input[type="text"] {
+        border: none;
+        outline: none;
+        font-size: 1.08rem;
+        flex: 1;
+        background: transparent;
+        padding: 0.7rem 0.5rem;
+        border-radius: 0;
+      }
+      .newsletter-input-group input[type="email"]::placeholder,
+      .newsletter-input-group input[type="text"]::placeholder {
+        color: #888;
+        font-size: 1.05rem;
+      }
+      .newsletter-card .btn-primary {
+        border-radius: 24px;
+        font-size: 1.08rem;
+        padding: 0.7rem 2.2rem;
+        font-weight: 700;
+        margin-left: 0.7rem;
+        box-shadow: 0 2px 8px #007bff22;
+        background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+        border: none;
+        transition: background 0.3s;
+      }
+      .newsletter-card .btn-primary:hover {
+        background: linear-gradient(90deg, #218838 0%, #0056b3 100%);
+        color: #fff;
+      }
+      .newsletter-checkbox input[type="checkbox"] {
+        accent-color: #28a745;
+        width: 1.1em;
+        height: 1.1em;
+      }
+      /* Confetti animation */
+      .confetti {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        pointer-events: none;
+        z-index: 10;
+      }
+      /* Newsletter Advanced Enhancements */
+      .newsletter-progress {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto 1.1rem auto;
+        background: #e3eafc;
+        border-radius: 8px;
+        height: 8px;
+        overflow: hidden;
+        position: relative;
+      }
+      .newsletter-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+        width: 50%;
+        transition: width 0.4s;
+      }
+      .newsletter-floating-label {
+        position: relative;
+        margin-bottom: 1.2rem;
+        text-align: left;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-floating-label input {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #007bff33;
+        background: transparent;
+        font-size: 1.08rem;
+        padding: 1.2rem 0.5rem 0.3rem 0.5rem;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      .newsletter-floating-label label {
+        position: absolute;
+        left: 0.5rem;
+        top: 1.2rem;
+        color: #888;
+        font-size: 1.05rem;
+        pointer-events: none;
+        transition: 0.2s;
+        background: transparent;
+        z-index: 1;
+      }
+      .newsletter-floating-label input:focus + label,
+      .newsletter-floating-label input:not(:placeholder-shown) + label {
+        top: -1.1rem;
+        left: 0.1rem;
+        font-size: 0.93rem;
+        color: #007bff;
+        background: #f7fafd;
+        padding: 0 0.2rem;
+        z-index: 2;
+      }
+      .newsletter-card .btn-animated {
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 #28a74544;
+        }
+        70% {
+          box-shadow: 0 0 0 10px #28a74511;
+        }
+        100% {
+          box-shadow: 0 0 0 0 #28a74544;
+        }
+      }
+      .newsletter-dark {
+        background: linear-gradient(
+          135deg,
+          #232946 60%,
+          #121629 100%
+        ) !important;
+        color: #fff !important;
+      }
+      .newsletter-dark .newsletter-input-group,
+      .newsletter-dark .newsletter-floating-label input {
+        background: #232946 !important;
+        color: #fff !important;
+        border-color: #007bff55 !important;
+      }
+      .newsletter-dark .newsletter-floating-label label {
+        color: #bbb !important;
+        background: #232946 !important;
+      }
+      .newsletter-dark .newsletter-card .btn-primary {
+        background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+        color: #fff;
+      }
+      .newsletter-dark .newsletter-card .btn-primary:hover {
+        background: linear-gradient(90deg, #218838 0%, #0056b3 100%);
+        color: #ffd24c;
+      }
+      .newsletter-dark .newsletter-benefits,
+      .newsletter-dark .newsletter-testimonial {
+        color: #fff;
+        background: #232946;
+      }
+      .newsletter-dark .newsletter-privacy {
+        color: #bbb;
+      }
+      .newsletter-dark .newsletter-social a {
+        color: #ffd24c;
+      }
+      .newsletter-dark .newsletter-social a:hover {
+        color: #28a745;
+      }
+      /* Modal styles */
+      .modal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: #fff;
+        border-radius: 16px;
+        max-width: 420px;
+        width: 90vw;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 8px 32px #00336633;
+        position: relative;
+        text-align: center;
+      }
+      .modal-content h4 {
+        color: #003366;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      .modal-content .close-modal {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        font-size: 1.7rem;
+        color: #007bff;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .modal-content .btn {
+        margin-top: 1.2rem;
+      }
+      /* Contact Us Section Ultimate Enhancements */
+      .contact-section {
+        background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><rect fill="%23e3eafc" width="100%25" height="100%25"/><circle fill="%23f7fafd" fill-opacity="0.7" cx="40" cy="40" r="36"/><circle fill="%23e3eafc" fill-opacity="0.5" cx="200" cy="120" r="60"/><circle fill="%23f7fafd" fill-opacity="0.7" cx="90" cy="200" r="40"/></svg>');
+        background-size: cover;
+        border-radius: 20px;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        padding: 70px 0;
+        max-width: 1100px;
+        margin: 56px auto;
+        text-align: center;
+        position: relative;
+      }
+      .contact-card,
+      .contact-form-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px #00336622, 0 1.5px 8px #28a74522;
+        border: 1.5px solid #007bff22;
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        max-width: 420px;
+        min-height: 520px;
+        margin: 0 auto 2rem auto;
+        text-align: left;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .contact-form-card {
+        font-family: "Quicksand", Arial, sans-serif;
+      }
+      .contact-card {
+        font-family: "Quicksand", Arial, sans-serif;
+      }
+      .contact-info {
+        margin-bottom: 1.2rem;
+        font-size: 1.07rem;
+        color: #003366;
+      }
+      .contact-info strong {
+        color: #007bff;
+      }
+      .contact-social {
+        margin-top: 1.1rem;
+        margin-bottom: 0.7rem;
+        text-align: center;
+      }
+      .contact-social a {
+        color: #007bff;
+        margin: 0 0.4rem;
+        font-size: 1.5rem;
+        transition: color 0.2s;
+        vertical-align: middle;
+        display: inline-block;
+      }
+      .contact-social a:hover {
+        color: #28a745;
+      }
+      .contact-map {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px #00336611;
+        margin: 1.2rem auto 0.7rem auto;
+        display: block;
+        min-height: 180px;
+        border: none;
+      }
+      .contact-form-card .btn-primary {
+        border-radius: 24px;
+        font-size: 1.13rem;
+        padding: 0.7rem 2.2rem;
+        font-weight: 700;
+        margin: 0.7rem auto 0.2rem auto;
+        display: block;
+        width: 100%;
+        max-width: 350px;
+        background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+        border: none;
+        transition: background 0.3s;
+        color: #fff;
+        font-family: "Montserrat", Arial, sans-serif;
+        position: relative;
+        animation: pulse 1.5s infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .contact-form-card .btn-primary:hover {
+        background: linear-gradient(90deg, #218838 0%, #0056b3 100%);
+        color: #ffd24c;
+      }
+      .contact-btn-icon {
+        display: inline-block;
+        animation: arrowBounce 1.2s infinite alternate;
+        font-size: 1.3rem;
+        color: #fff;
+        margin-left: 0.2rem;
+      }
+      @keyframes arrowBounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(5px);
+        }
+      }
+      .contact-floating-label {
+        position: relative;
+        margin-bottom: 1.2rem;
+        text-align: left;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-floating-label input,
+      .contact-floating-label textarea,
+      .contact-floating-label select {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid #007bff33;
+        background: transparent;
+        font-size: 1.08rem;
+        padding: 1.2rem 0.5rem 0.3rem 0.5rem;
+        outline: none;
+        transition: border-color 0.3s;
+        font-family: "Quicksand", Arial, sans-serif;
+        resize: none;
+      }
+      .contact-floating-label label {
+        position: absolute;
+        left: 0.5rem;
+        top: 1.2rem;
+        color: #888;
+        font-size: 1.05rem;
+        pointer-events: none;
+        transition: 0.2s;
+        background: transparent;
+        z-index: 1;
+      }
+      .contact-floating-label input:focus + label,
+      .contact-floating-label input:not(:placeholder-shown) + label,
+      .contact-floating-label textarea:focus + label,
+      .contact-floating-label textarea:not(:placeholder-shown) + label,
+      .contact-floating-label select:focus + label,
+      .contact-floating-label select:not([value=""]) + label {
+        top: -1.1rem;
+        left: 0.1rem;
+        font-size: 0.93rem;
+        color: #007bff;
+        background: #f7fafd;
+        padding: 0 0.2rem;
+        z-index: 2;
+      }
+      .contact-hours {
+        font-size: 0.98rem;
+        color: #007bff;
+        margin-top: 0.7rem;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+      }
+      .contact-reply-note {
+        font-size: 0.97rem;
+        color: #28a745;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+      }
+      .contact-whatsapp {
+        color: #25d366;
+        font-size: 1.5rem;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+      .back-to-top-contact {
+        position: absolute;
+        right: 24px;
+        bottom: 24px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        font-size: 1.7rem;
+        box-shadow: 0 4px 16px #00336633;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+        z-index: 10;
+      }
+      .back-to-top-contact:hover {
+        background: #0056b3;
+        transform: scale(1.1);
+      }
+      @media (max-width: 900px) {
+        .contact-section {
+          padding: 36px 0 36px 0;
+          border-radius: 10px;
+        }
+        .contact-card,
+        .contact-form-card {
+          max-width: 98vw;
+          min-height: unset;
+        }
+        .contact-map {
+          max-width: 98vw;
+        }
+        .back-to-top-contact {
+          right: 12px;
+          bottom: 12px;
+        }
+        .contact-section > .container > div[style*="display:flex"] {
+          flex-direction: column;
+          gap: 1.5rem;
+          align-items: stretch;
+        }
+      }
+      /* Contact Us Section Ultimate UX */
+      .contact-section {
+        background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg"><rect fill="%23e3eafc" width="100%25" height="100%25"/><circle fill="%23f7fafd" fill-opacity="0.7" cx="40" cy="40" r="36"/><circle fill="%23e3eafc" fill-opacity="0.5" cx="200" cy="120" r="60"/><circle fill="%23f7fafd" fill-opacity="0.7" cx="90" cy="200" r="40"/><text x="80" y="120" font-size="60" fill="%23007bff" fill-opacity="0.12" font-family="Arial">📍</text></svg>');
+        background-size: cover;
+        border-radius: 20px;
+        box-shadow: 0 6px 32px rgb(0 33 71 / 0.1);
+        padding: 70px 0;
+        max-width: 1100px;
+        margin: 56px auto;
+        text-align: center;
+        position: relative;
+      }
+      .contact-card,
+      .contact-form-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px #00336622, 0 1.5px 8px #28a74522;
+        border: 1.5px solid #007bff22;
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        max-width: 440px;
+        min-height: 540px;
+        margin: 0 auto 2rem auto;
+        text-align: left;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s, transform 0.8s;
+      }
+      .contact-card.visible,
+      .contact-form-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .contact-form-card .btn-primary {
+        background: linear-gradient(90deg, #ff7e5f 0%, #007bff 100%);
+        /* orange to blue */
+        border: none;
+        transition: background 0.3s;
+        color: #fff;
+        font-family: "Montserrat", Arial, sans-serif;
+        position: relative;
+        animation: pulse 1.5s infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .contact-form-card .btn-primary:hover {
+        background: linear-gradient(90deg, #ff512f 0%, #0056b3 100%);
+        color: #ffd24c;
+      }
+      .contact-btn-icon {
+        display: inline-block;
+        animation: arrowBounce 1.2s infinite alternate;
+        font-size: 1.3rem;
+        color: #fff;
+        margin-left: 0.2rem;
+      }
+      .contact-floating-label input:invalid:not(:focus):not(:placeholder-shown),
+      .contact-floating-label
+        textarea:invalid:not(:focus):not(:placeholder-shown) {
+        border-bottom: 2px solid #ff7e5f;
+      }
+      .contact-error {
+        color: #ff7e5f;
+        font-size: 0.97rem;
+        margin-top: -0.7rem;
+        margin-bottom: 0.7rem;
+        min-height: 1.2em;
+        display: block;
+      }
+      .contact-success-check {
+        color: #28a745;
+        font-size: 2.2rem;
+        animation: popIn 0.7s;
+        margin-bottom: 0.5rem;
+      }
+      @keyframes popIn {
+        0% {
+          transform: scale(0.7);
+          opacity: 0;
+        }
+        80% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .contact-copy-btn {
+        background: none;
+        border: none;
+        color: #007bff;
+        font-size: 1.1rem;
+        margin-left: 0.3rem;
+        cursor: pointer;
+        vertical-align: middle;
+        transition: color 0.2s;
+      }
+      .contact-copy-btn:hover {
+        color: #28a745;
+      }
+      .contact-qr {
+        width: 80px;
+        height: 80px;
+        margin: 0.7rem auto 0.7rem auto;
+        display: block;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px #00336611;
+      }
+      .contact-loading {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        border: 3px solid #007bff;
+        border-top: 3px solid #fff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 0.7rem auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .contact-modal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .contact-modal-content {
+        background: #fff;
+        border-radius: 16px;
+        max-width: 420px;
+        width: 90vw;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 8px 32px #00336633;
+        position: relative;
+        text-align: center;
+      }
+      .contact-modal-content h4 {
+        color: #003366;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      .contact-modal-content .close-modal {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        font-size: 1.7rem;
+        color: #007bff;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .contact-modal-content .btn {
+        margin-top: 1.2rem;
+      }
+      /* Contact Us Personalization */
+      .contact-personal-header {
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        margin-bottom: 1.1rem;
+      }
+      .contact-founder-photo {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2.5px solid #007bff;
+        box-shadow: 0 2px 8px #00336622;
+      }
+      .contact-founder-msg {
+        font-size: 1.08rem;
+        color: #003366;
+        font-family: "Montserrat", Arial, sans-serif;
+        font-weight: 500;
+      }
+      .contact-live-status {
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.98rem;
+        color: #28a745;
+        font-weight: 600;
+        margin-bottom: 0.7rem;
+        gap: 0.4rem;
+      }
+      .contact-live-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #28a745;
+        margin-right: 0.3rem;
+        animation: pulseLive 1.2s infinite alternate;
+      }
+      @keyframes pulseLive {
+        0% {
+          box-shadow: 0 0 0 0 #28a74544;
+        }
+        100% {
+          box-shadow: 0 0 0 6px #28a74511;
+        }
+      }
+      .contact-mini-testimonial {
+        background: #f7fafd;
+        border-radius: 10px;
+        padding: 0.7rem 1rem 0.7rem 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.98rem;
+        color: #003366;
+        box-shadow: 0 1px 6px #00336611;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .contact-mini-stars {
+        color: #ffd24c;
+        font-size: 1.1rem;
+        margin-right: 0.4rem;
+      }
+      .contact-privacy-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.97rem;
+        color: #007bff;
+        margin-bottom: 1rem;
+      }
+      .contact-privacy-badge i {
+        color: #28a745;
+        font-size: 1.1rem;
+      }
+      .contact-quick-actions {
+        display: flex;
+        gap: 0.7rem;
+        margin-bottom: 1.1rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      .contact-quick-btn {
+        background: linear-gradient(90deg, #007bff 0%, #ff7e5f 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.1rem;
+        font-size: 0.97rem;
+        font-family: "Montserrat", Arial, sans-serif;
+        cursor: pointer;
+        box-shadow: 0 1px 6px #00336622;
+        transition: background 0.2s, color 0.2s;
+      }
+      .contact-quick-btn:hover {
+        background: linear-gradient(90deg, #0056b3 0%, #ff512f 100%);
+        color: #ffd24c;
+      }
+      .contact-lang-switch {
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        z-index: 2;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 1px 6px #00336611;
+        padding: 0.2rem 0.7rem;
+        font-size: 0.97rem;
+        color: #007bff;
+        border: 1px solid #007bff22;
+        cursor: pointer;
+      }
+      .contact-voice-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #f7fafd;
+        border: 1px solid #007bff22;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-size: 0.97rem;
+        color: #007bff;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .contact-voice-btn:hover {
+        background: #e3eafc;
+      }
+      .contact-reason-icon {
+        margin-right: 0.5rem;
+        font-size: 1.1rem;
+      }
+      .contact-map-animated-pin {
+        position: absolute;
+        left: 50%;
+        top: 38%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        font-size: 2.2rem;
+        animation: bouncePin 1.2s infinite alternate;
+        pointer-events: none;
+      }
+      @keyframes bouncePin {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+        60% {
+          transform: translate(-50%, -60%) scale(1.1);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+      .confetti {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 99999;
+      }
+      .bounce-btn {
+        animation: bounce 1.5s infinite alternate;
+      }
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-10px);
+        }
+      }
+      .footer-modern {
+        background: linear-gradient(90deg, #002147 0%, #003366 100%);
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        box-shadow: 0 -4px 18px rgb(0 33 71 / 0.7);
+        margin-top: 0;
+      }
+      .footer-modern .footer-title {
+        font-size: 1.13rem;
+        font-weight: 700;
+        color: #ffd24c;
+        margin-bottom: 0.7rem;
+        letter-spacing: 0.04em;
+      }
+      .footer-modern .footer-links li {
+        margin-bottom: 0.4rem;
+      }
+      .footer-modern .footer-links a {
+        color: #e3eafc;
+        text-decoration: none;
+        font-size: 1.01rem;
+        transition: color 0.2s;
+      }
+      .footer-modern .footer-links a:hover {
+        color: #ffd24c;
+        text-decoration: underline;
+      }
+      .footer-modern .footer-social a {
+        color: #ffd24c;
+        margin: 0 0.4rem;
+        font-size: 1.5rem;
+        transition: color 0.2s;
+        vertical-align: middle;
+      }
+      .footer-modern .footer-social a:hover {
+        color: #28a745;
+      }
+      .footer-modern .footer-divider {
+        border: none;
+        height: 2px;
+        background: linear-gradient(90deg, #003366 0%, #ffd24c 100%);
+        opacity: 0.3;
+      }
+      .footer-modern .footer-newsletter-form .form-control {
+        border-radius: 24px 0 0 24px;
+        border: none;
+        font-size: 1.01rem;
+        background: #e3eafc;
+        color: #003366;
+        box-shadow: none;
+        outline: none;
+      }
+      .footer-modern .footer-newsletter-form .form-control:focus {
+        background: #fff;
+        color: #003366;
+        box-shadow: 0 0 8px #007bff33;
+      }
+      .footer-modern .footer-newsletter-form .btn-primary {
+        border-radius: 0 24px 24px 0;
+        background: #28a745;
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        transition: background 0.2s;
+      }
+      .footer-modern .footer-newsletter-form .btn-primary:hover {
+        background: #ffd24c;
+        color: #003366;
+      }
+      .footer-modern .footer-newsletter-success {
+        color: #28a745;
+        font-size: 1.01rem;
+        margin-top: 0.5rem;
+        animation: popIn 0.7s;
+      }
+      @media (max-width: 900px) {
+        .footer-modern .container {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        .footer-modern .row > div {
+          text-align: center !important;
+        }
+      }
+      @media (max-width: 600px) {
+        .footer-modern .container {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+        .footer-modern .footer-title {
+          margin-top: 1.2rem;
+        }
+      }
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+      @keyframes animatedBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      #contact.contact-section {
+        background: linear-gradient(
+          120deg,
+          #e3eafc 0%,
+          #f7fafd 100%,
+          #d9e2ec 100%
+        );
+        background-size: 200% 200%;
+        animation: animatedBG 12s ease-in-out infinite;
+      }
+      #contact .card {
+        transition: box-shadow 0.3s, transform 0.3s;
+      }
+      #contact .card:hover {
+        box-shadow: 0 16px 48px #007bff22, 0 2px 12px #00336611;
+        transform: translateY(-4px) scale(1.01);
+      }
+      #contact h2,
+      #contact label,
+      #contact .form-label,
+      #contact .accordion-button {
+        font-family: "Quicksand", "Montserrat", Arial, sans-serif;
+        letter-spacing: 0.03em;
+      }
+      #contact h2 {
+        font-size: 2.7rem;
+        font-weight: 800;
+        color: #003366;
+        margin-bottom: 0.3em;
+        text-shadow: 0 2px 8px #00336611;
+      }
+      #contact .btn-primary {
+        background: linear-gradient(90deg, #007bff 0%, #28a745 100%);
+        color: #fff;
+        border: none;
+        border-radius: 32px;
+        font-size: 1.18rem;
+        font-weight: 700;
+        box-shadow: 0 4px 18px #007bff44;
+        transition: background 0.3s, color 0.3s, transform 0.2s;
+      }
+      #contact .btn-primary:hover,
+      #contact .btn-primary:focus {
+        background: linear-gradient(90deg, #28a745 0%, #007bff 100%);
+        color: #ffd24c;
+        transform: scale(1.04);
+      }
+      #contact .form-control,
+      #contact .form-select {
+        border-radius: 12px;
+        border: 1.5px solid #007bff33;
+        font-family: "Quicksand", Arial, sans-serif;
+        font-size: 1.08rem;
+        color: #003366;
+        background: #f7fafd;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+      #contact .form-control:focus,
+      #contact .form-select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px #007bff33;
+        background: #fff;
+        color: #003366;
+      }
+      #contact .form-label,
+      #contact label {
+        color: #003366;
+        font-weight: 600;
+        font-size: 1.05rem;
+      }
+      #contact .contact-error {
+        color: #ff7e5f;
+        font-size: 0.97rem;
+        min-height: 1.2em;
+        display: block;
+      }
+      #contact .newsletter-success {
+        font-family: "Quicksand", Arial, sans-serif;
+        font-size: 1.15rem;
+        color: #28a745;
+        margin-top: 1rem;
+        animation: popIn 0.7s;
+      }
+      #contact .newsletter-success#contactError {
+        color: #ff7e5f;
+      }
+      #contact .contact-btn-icon {
+        margin-left: 0.4rem;
+        font-size: 1.2rem;
+        vertical-align: middle;
+      }
+      #contact .accordion-button {
+        font-size: 1.08rem;
+        color: #003366;
+        background: #e3eafc;
+        border-radius: 8px;
+        font-weight: 700;
+        transition: background 0.2s, color 0.2s;
+      }
+      #contact .accordion-button:not(.collapsed) {
+        background: #007bff22;
+        color: #007bff;
+      }
+      #contact .accordion-item {
+        border-radius: 10px;
+        margin-bottom: 0.7rem;
+        border: none;
+        box-shadow: 0 2px 8px #00336611;
+      }
+      #contact .accordion-body {
+        background: #f7fafd;
+        border-radius: 0 0 10px 10px;
+        color: #003366;
+        font-size: 1.03rem;
+      }
+      @media (max-width: 900px) {
+        #contact .card {
+          padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+        }
+        #contact h2 {
+          font-size: 2rem;
+        }
+      }
+      @media (max-width: 600px) {
+        #contact {
+          padding: 24px 0 !important;
+        }
+        #contact .card {
+          padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+        }
+        #contact h2 {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
+      <div class="container">
+        <a class="navbar-brand" href="#home">
+          <img src="img/logo.png" alt="Dyashin Logo" />
+          <!-- Replace with your logo -->
+        </a>
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#services" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item">
+              <a href="#products" class="nav-link">Products</a>
+            </li>
+            <li class="nav-item">
+              <a href="#gallery" class="nav-link">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a href="#newsletter" class="nav-link">Subscribe</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="bg-light"
+      style="
+        position: relative;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 51, 102, 0.7),
+            rgba(0, 123, 255, 0.5)
+          ),
+          url('https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=1500&q=80')
+            center/cover no-repeat;
+        min-height: 92vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        class="container"
+        style="
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 70vh;
+          text-align: center;
+        "
+      >
+        <h1
+          class="fade-in"
+          style="
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+          "
+        >
+          Welcome to <span style="color: #ffd24c">Dyashin Technosoft</span>
+          <span style="font-size: 2rem; vertical-align: middle">🚀</span>
+        </h1>
+        <div
+          id="heroTypewriter"
+          class="fade-in"
+          style="
+            animation-delay: 0.3s;
+            color: #e6f0ff;
+            font-size: 1.35rem;
+            font-weight: 500;
+            min-height: 2.2em;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+          "
+        ></div>
+        <div
+          class="fade-in"
+          style="
+            animation-delay: 0.5s;
+            font-size: 1.13rem;
+            color: #fff;
+            background: rgba(0, 51, 102, 0.45);
+            border-radius: 12px;
+            padding: 0.7rem 1.2rem;
+            margin: 1.1rem 0 1.5rem 0;
+            max-width: 480px;
+            display: inline-block;
+          "
+        >
+          Dyashin Technosoft delivers innovative, customer-centric solutions
+          that drive business success across the globe. Join us on a journey of
+          transformation and growth.
+        </div>
+        <div
+          class="fade-in"
+          style="
+            animation-delay: 0.7s;
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+          "
+        >
+          <div style="color: #ffd24c; font-size: 1.25rem; font-weight: 700">
+            <span id="statYears">0</span>+<br /><span
+              style="font-size: 0.98rem; color: #fff; font-weight: 500"
+              >Years in Business</span
+            >
+          </div>
+          <div style="color: #ffd24c; font-size: 1.25rem; font-weight: 700">
+            <span id="statClients">0</span>+<br /><span
+              style="font-size: 0.98rem; color: #fff; font-weight: 500"
+              >Clients Served</span
+            >
+          </div>
+          <div style="color: #ffd24c; font-size: 1.25rem; font-weight: 700">
+            <span id="statProjects">0</span>+<br /><span
+              style="font-size: 0.98rem; color: #fff; font-weight: 500"
+              >Projects Delivered</span
+            >
+          </div>
+        </div>
+        <a
+          href="#contact"
+          class="btn btn-primary hero-btn fade-in bounce-btn"
+          style="
+            animation-delay: 1s;
+            font-size: 1.18rem;
+            padding: 0.85rem 2.5rem;
+            border-radius: 32px;
+            font-weight: 700;
+            box-shadow: 0 4px 18px #007bff44;
+          "
+          >Start Your Journey</a
+        >
+      </div>
+      <div class="hero-wave">
+        <svg
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style="width: 100%; height: 80px; display: block"
+        >
+          <path
+            d="M0,80 C360,160 1080,0 1440,80 L1440,120 L0,120 Z"
+            fill="#f7fafd"
+          />
+        </svg>
+      </div>
+    </section>
+    <hr class="section-divider" />
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="bg-white"
+      style="position: relative; overflow: hidden"
+    >
+      <div class="container">
+        <!-- Company Image/Illustration -->
+        <div class="text-center mb-4">
+          <img
+            src="img/about.jpg"
+            alt="About Dyashin"
+            style="
+              max-width: 320px;
+              width: 100%;
+              border-radius: 18px;
+              box-shadow: 0 4px 24px #00336622;
+              object-fit: cover;
+            "
+          />
+        </div>
+        <!-- Company Intro -->
+        <h2 class="text-center">About Us</h2>
+        <div
+          class="mx-auto mb-4"
+          style="
+            height: 3px;
+            width: 60px;
+            background: #007bff;
+            border-radius: 2px;
+          "
+        ></div>
+        <p
+          class="lead text-center"
+          style="max-width: 700px; margin: 0 auto 2rem auto"
+        >
+          At Dyashin Technosoft, we believe technology is the catalyst for
+          positive change. Since our founding, we've been dedicated to helping
+          organizations of all sizes unlock their full potential through
+          innovative digital solutions, a passion for excellence, and a
+          relentless focus on customer success. Our global team brings together
+          visionaries, engineers, and creative thinkers to deliver results that
+          matter.
+        </p>
+        <!-- Mission, Vision, Values Cards -->
+        <div class="row g-4 justify-content-center mb-5">
+          <div class="col-md-4">
+            <div
+              class="card h-100 shadow-sm text-center p-3"
+              style="border-radius: 16px"
+            >
+              <div class="card-body">
+                <i
+                  class="bi bi-bullseye"
+                  style="font-size: 2rem; color: #007bff"
+                ></i>
+                <h5 class="mt-2">Mission</h5>
+                <p class="mb-0">
+                  To empower people and businesses to thrive in a digital-first
+                  world by delivering transformative technology and exceptional
+                  service.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card h-100 shadow-sm text-center p-3"
+              style="border-radius: 16px"
+            >
+              <div class="card-body">
+                <i
+                  class="bi bi-eye"
+                  style="font-size: 2rem; color: #28a745"
+                ></i>
+                <h5 class="mt-2">Vision</h5>
+                <p class="mb-0">
+                  To be the world's most trusted partner for digital
+                  transformation, innovation, and sustainable growth.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card h-100 shadow-sm text-center p-3"
+              style="border-radius: 16px"
+            >
+              <div class="card-body">
+                <i
+                  class="bi bi-lightbulb"
+                  style="font-size: 2rem; color: #ffd24c"
+                ></i>
+                <h5 class="mt-2">Values</h5>
+                <ul class="list-unstyled mb-0" style="font-size: 1.01rem">
+                  <li>
+                    <i class="bi bi-award" style="color: #28a745"></i>
+                    Excellence in Everything
+                  </li>
+                  <li>
+                    <i class="bi bi-people" style="color: #007bff"></i>
+                    Collaboration & Respect
+                  </li>
+                  <li>
+                    <i class="bi bi-shield-check" style="color: #003366"></i>
+                    Integrity & Trust
+                  </li>
+                  <li>
+                    <i class="bi bi-lightbulb" style="color: #ffd24c"></i>
+                    Curiosity & Innovation
+                  </li>
+                  <li>
+                    <i class="bi bi-globe" style="color: #007bff"></i> Diversity
+                    & Inclusion
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Timeline as Horizontal Stepper -->
+        <div class="mb-5">
+          <h5 class="text-center mb-3" style="font-weight: 700; color: #007bff">
+            Our Journey
+          </h5>
+          <div
+            class="d-flex flex-wrap justify-content-center align-items-center"
+            style="gap: 2rem"
+          >
+            <div class="text-center">
+              <div
+                style="
+                  background: #007bff;
+                  color: #fff;
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.3rem;
+                  margin: 0 auto 0.5rem auto;
+                "
+              >
+                2023
+              </div>
+              <div style="font-size: 0.98rem; max-width: 140px">
+                Founded with a vision to make technology accessible for all
+              </div>
+            </div>
+            <div style="width: 40px; height: 3px; background: #007bff33"></div>
+            <div class="text-center">
+              <div
+                style="
+                  background: #28a745;
+                  color: #fff;
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.3rem;
+                  margin: 0 auto 0.5rem auto;
+                "
+              >
+                2024
+              </div>
+              <div style="font-size: 0.98rem; max-width: 140px">
+                Launched our first SaaS platform and expanded to Asia-Pacific
+              </div>
+            </div>
+            <div style="width: 40px; height: 3px; background: #007bff33"></div>
+            <div class="text-center">
+              <div
+                style="
+                  background: #ffd24c;
+                  color: #003366;
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.3rem;
+                  margin: 0 auto 0.5rem auto;
+                "
+              >
+                2025
+              </div>
+              <div style="font-size: 0.98rem; max-width: 140px">
+                Recognized as a top innovator in cloud and AI solutions
+              </div>
+            </div>
+            <div style="width: 40px; height: 3px; background: #007bff33"></div>
+            <div class="text-center">
+              <div
+                style="
+                  background: #003366;
+                  color: #fff;
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.3rem;
+                  margin: 0 auto 0.5rem auto;
+                "
+              >
+                2026
+              </div>
+              <div style="font-size: 0.98rem; max-width: 140px">
+                Global team reaches 100+ experts, serving clients in 20+
+                countries
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Leadership Grid -->
+        <div class="mb-5">
+          <h5 class="text-center mb-4" style="font-weight: 700">Leadership</h5>
+          <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-3">
+              <div
+                class="card h-100 shadow-sm text-center p-3"
+                style="border-radius: 16px"
+              >
+                <img
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Amit Verma"
+                  style="
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin: 0 auto 0.7rem auto;
+                    box-shadow: 0 2px 8px #00336622;
+                  "
+                />
+                <h6 class="mb-1">Amit Verma</h6>
+                <div style="color: #007bff; font-size: 0.97rem">
+                  Chief Executive Officer
+                </div>
+                <div style="font-size: 0.95rem; color: #666">
+                  Visionary leader with a passion for digital transformation and
+                  empowering teams to achieve more.
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div
+                class="card h-100 shadow-sm text-center p-3"
+                style="border-radius: 16px"
+              >
+                <img
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Sara Lee"
+                  style="
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin: 0 auto 0.7rem auto;
+                    box-shadow: 0 2px 8px #00336622;
+                  "
+                />
+                <h6 class="mb-1">Sara Lee</h6>
+                <div style="color: #28a745; font-size: 0.97rem">
+                  Chief Technology Officer
+                </div>
+                <div style="font-size: 0.95rem; color: #666">
+                  Expert in cloud, AI, and scalable systems, driving innovation
+                  and technical excellence at Dyashin.
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div
+                class="card h-100 shadow-sm text-center p-3"
+                style="border-radius: 16px"
+              >
+                <img
+                  src="https://randomuser.me/api/portraits/men/65.jpg"
+                  alt="David Kim"
+                  style="
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin: 0 auto 0.7rem auto;
+                    box-shadow: 0 2px 8px #00336622;
+                  "
+                />
+                <h6 class="mb-1">David Kim</h6>
+                <div style="color: #003366; font-size: 0.97rem">
+                  Chief Operating Officer
+                </div>
+                <div style="font-size: 0.95rem; color: #666">
+                  Operations strategist ensuring seamless delivery and
+                  outstanding client experiences worldwide.
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div
+                class="card h-100 shadow-sm text-center p-3"
+                style="border-radius: 16px"
+              >
+                <img
+                  src="https://randomuser.me/api/portraits/women/68.jpg"
+                  alt="Priya Nair"
+                  style="
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    margin: 0 auto 0.7rem auto;
+                    box-shadow: 0 2px 8px #00336622;
+                  "
+                />
+                <h6 class="mb-1">Priya Nair</h6>
+                <div style="color: #ffd24c; font-size: 0.97rem">
+                  Chief Product Officer
+                </div>
+                <div style="font-size: 0.95rem; color: #666">
+                  Product innovator focused on user-centric design and
+                  delivering value-driven solutions.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonials Card -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-md-8">
+            <div
+              class="card shadow-sm p-4"
+              style="border-radius: 16px; background: #f7fafd"
+            >
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="img/user2.jpg"
+                  alt="Alex Morgan"
+                  style="
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 2px solid #28a745;
+                    margin-right: 0.8rem;
+                  "
+                />
+                <div>
+                  <div style="font-weight: 700; color: #28a745">
+                    Alex Morgan
+                  </div>
+                  <div style="font-size: 0.97rem; color: #888">London, UK</div>
+                </div>
+              </div>
+              <div
+                style="font-size: 1.01rem; color: #003366; font-style: italic"
+              >
+                "Partnering with Dyashin was the best decision for our digital
+                transformation. Their expertise, dedication, and support
+                exceeded all expectations!"
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Decorative Background Shape -->
+        <div
+          style="
+            position: absolute;
+            top: -60px;
+            right: -80px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(
+              circle,
+              #007bff22 60%,
+              transparent 100%
+            );
+            z-index: 0;
+          "
+        ></div>
+        <div
+          style="
+            position: absolute;
+            bottom: -60px;
+            left: -80px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(
+              circle,
+              #28a74522 60%,
+              transparent 100%
+            );
+            z-index: 0;
+          "
+        ></div>
+      </div>
+    </section>
+    <!-- End About Section -->
+
+    <!-- Services -->
+    <hr class="section-divider" />
+    <section id="services" class="services-section">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div
+          style="
+            height: 3px;
+            width: 60px;
+            background: #007bff;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+          "
+        ></div>
+        <div
+          class="mb-3"
+          style="color: #007bff; font-weight: 600; letter-spacing: 0.04em"
+        >
+          What We Offer
+        </div>
+        <div class="service-cards">
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-gear"></i></div>
+            <h5>Managed Services</h5>
+            <p>
+              Flexible delivery models: Fixed Bid, T&M, Offshore & Hybrid
+              solutions tailored to your needs.
+            </p>
+            <a href="/services/managed-services.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-people"></i></div>
+            <h5>Consulting</h5>
+            <p>
+              Staffing (Contract, Hire), BOT model, and talent solutions to help
+              you scale efficiently.
+            </p>
+            <a href="/services/consulting.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-mortarboard"></i></div>
+            <h5>Learning & Training</h5>
+            <p>
+              Corporate training, onboarding, reskilling, and campus programs
+              for continuous growth.
+            </p>
+            <a href="/services/learning-training.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-cloud-check"></i></div>
+            <h5>Cloud Solutions</h5>
+            <p>
+              Secure, scalable cloud migration, management, and optimization for
+              your business growth.
+            </p>
+            <a href="/services/cloud-solutions.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-palette"></i></div>
+            <h5>UI/UX Design</h5>
+            <p>
+              Modern, user-focused design for web and mobile apps to delight
+              your customers.
+            </p>
+            <a href="/services/ui-ux-design.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-shield-lock"></i></div>
+            <h5>Cybersecurity</h5>
+            <p>
+              Protect your business with advanced security solutions, risk
+              assessment, and compliance services.
+            </p>
+            <a href="/services/cybersecurity.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-bar-chart-line"></i></div>
+            <h5>Data Analytics</h5>
+            <p>
+              Unlock insights and drive growth with data visualization, BI, and
+              predictive analytics.
+            </p>
+            <a href="/services/data-analytics.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-phone"></i></div>
+            <h5>Mobile App Development</h5>
+            <p>
+              Custom mobile solutions for iOS and Android to engage your
+              customers on the go.
+            </p>
+            <a href="/services/mobile-app.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Carousel -->
+    <hr class="section-divider" />
+    <section id="products" class="products-section">
+      <div class="container">
+        <h2>Our Products</h2>
+        <div
+          style="
+            height: 3px;
+            width: 60px;
+            background: #007bff;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+          "
+        ></div>
+        <div
+          class="mb-3"
+          style="color: #007bff; font-weight: 600; letter-spacing: 0.04em"
+        >
+          Powering Your Business
+        </div>
+        <div class="product-cards">
+          <div class="product-card">
+            <span class="product-badge">Featured</span>
+            <img
+              src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
+              alt="DSPristine ERP"
+            />
+            <h5><i class="bi bi-kanban product-icon"></i> DSPristine ERP</h5>
+            <div class="product-tagline">All-in-one business management</div>
+            <p>
+              Integrated Project, CRM, Inventory, and Analytics Suite for
+              seamless business management.
+            </p>
+            <ul class="product-features">
+              <li>Unified dashboard</li>
+              <li>Real-time analytics</li>
+              <li>Customizable modules</li>
+            </ul>
+            <a href="/products/dspristine-erp.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80"
+              alt="Sigo"
+            />
+            <h5><i class="bi bi-bag-check product-icon"></i> Sigo</h5>
+            <div class="product-tagline">
+              Smarter procurement, faster payments
+            </div>
+            <p>
+              B2B Procurement Automation with Secure Payments and streamlined
+              workflows.
+            </p>
+            <ul class="product-features">
+              <li>Automated purchase orders</li>
+              <li>Secure payment gateway</li>
+              <li>Supplier management</li>
+            </ul>
+            <a href="/products/sigo.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="product-card">
+            <span class="product-badge" style="background: #28a745; color: #fff"
+              >New</span
+            >
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
+              alt="Insight360"
+            />
+            <h5>
+              <i class="bi bi-bar-chart-line product-icon"></i> Insight360
+            </h5>
+            <div class="product-tagline">Business intelligence, simplified</div>
+            <p>
+              Advanced analytics dashboard for actionable business insights and
+              data-driven decisions.
+            </p>
+            <ul class="product-features">
+              <li>Custom reports</li>
+              <li>Interactive charts</li>
+              <li>Export to Excel/PDF</li>
+            </ul>
+            <a href="/products/insight360.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
+              alt="PaySecure"
+            />
+            <h5>
+              <i class="bi bi-credit-card-2-front product-icon"></i> PaySecure
+            </h5>
+            <div class="product-tagline">Payments made effortless</div>
+            <p>
+              Robust payment gateway for fast, secure, and seamless online
+              transactions.
+            </p>
+            <ul class="product-features">
+              <li>Multi-currency support</li>
+              <li>Fraud detection</li>
+              <li>Easy integration</li>
+            </ul>
+            <a href="/products/paysecure.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=600&q=80"
+              alt="SmartHR HR Management"
+            />
+            <h5><i class="bi bi-people product-icon"></i> SmartHR</h5>
+            <div class="product-tagline">Empowering your workforce</div>
+            <p>
+              Comprehensive HR management suite for recruitment, payroll, and
+              employee engagement.
+            </p>
+            <ul class="product-features">
+              <li>Employee self-service</li>
+              <li>Payroll automation</li>
+              <li>Performance tracking</li>
+            </ul>
+            <a href="/products/smarthr.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+              alt="AutoFlow"
+            />
+            <h5><i class="bi bi-robot product-icon"></i> AutoFlow</h5>
+            <div class="product-tagline">Automate your workflows</div>
+            <p>
+              Workflow automation platform to streamline repetitive tasks and
+              boost productivity.
+            </p>
+            <ul class="product-features">
+              <li>Drag-and-drop builder</li>
+              <li>Integration with 50+ apps</li>
+              <li>Real-time monitoring</li>
+            </ul>
+            <a href="/products/autoflow.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
+              alt="MarketReach"
+            />
+            <h5><i class="bi bi-megaphone product-icon"></i> MarketReach</h5>
+            <div class="product-tagline">
+              Reach your audience, grow your brand
+            </div>
+            <p>
+              Comprehensive marketing platform for campaigns, automation, and
+              analytics.
+            </p>
+            <ul class="product-features">
+              <li>Email & SMS campaigns</li>
+              <li>Audience segmentation</li>
+              <li>Campaign analytics</li>
+            </ul>
+            <a href="/products/marketreach.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+          <div class="product-card">
+            <span class="product-badge" style="background: #007bff; color: #fff"
+              >Pro</span
+            >
+            <img
+              src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
+              alt="DocuSignPro"
+            />
+            <h5><i class="bi bi-pen product-icon"></i> DocuSignPro</h5>
+            <div class="product-tagline">E-signatures made simple</div>
+            <p>
+              Secure, legally binding e-signature solution for fast document
+              turnaround.
+            </p>
+            <ul class="product-features">
+              <li>Legally compliant</li>
+              <li>Multi-device support</li>
+              <li>Document templates</li>
+            </ul>
+            <a href="/products/docusignpro.html" class="learn-more"
+              >Learn More <i class="bi bi-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <hr class="section-divider" />
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <h2>Team & Office Gallery</h2>
+        <div
+          style="
+            height: 3px;
+            width: 60px;
+            background: #007bff;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+          "
+        ></div>
+        <div
+          class="mb-3"
+          style="color: #007bff; font-weight: 600; letter-spacing: 0.04em"
+        >
+          Snapshots of Our Culture
+        </div>
+        <div class="gallery-grid">
+          <div
+            class="gallery-item lightbox-trigger"
+            data-caption="Team Brainstorming Session"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80"
+              alt="Team Brainstorming Session"
+            />
+            <div class="gallery-caption">Team Brainstorming Session</div>
+          </div>
+          <div
+            class="gallery-item lightbox-trigger"
+            data-caption="Modern Office Workspace"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=600&q=80"
+              alt="Modern Office Workspace"
+            />
+            <div class="gallery-caption">Modern Office Workspace</div>
+          </div>
+          <div
+            class="gallery-item lightbox-trigger"
+            data-caption="Corporate Event Gathering"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=600&q=80"
+              alt="Corporate Event Gathering"
+            />
+            <div class="gallery-caption">Corporate Event Gathering</div>
+          </div>
+          <div
+            class="gallery-item lightbox-trigger"
+            data-caption="Team Meeting Room"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=600&q=80"
+              alt="Team Meeting Room"
+            />
+            <div class="gallery-caption">Team Meeting Room</div>
+          </div>
+          <div
+            class="gallery-item lightbox-trigger"
+            data-caption="Annual Company Retreat"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80"
+              alt="Annual Company Retreat"
+            />
+            <div class="gallery-caption">Annual Company Retreat</div>
+          </div>
+          <div
+            class="gallery-item lightbox-trigger"
+            data-caption="Workspace Collaboration"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
+              alt="Workspace Collaboration"
+            />
+            <div class="gallery-caption">Workspace Collaboration</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Team Section -->
+    <hr class="section-divider" />
+    <section class="team-section" id="team">
+      <div class="container">
+        <h2>Meet Our Team</h2>
+        <div
+          style="
+            height: 3px;
+            width: 60px;
+            background: #007bff;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+          "
+        ></div>
+        <div
+          class="mb-3"
+          style="color: #007bff; font-weight: 600; letter-spacing: 0.04em"
+        >
+          The People Behind Dyashin
+        </div>
+        <div class="team-cards">
+          <div class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80"
+              alt="Olivia Turner portrait"
+            />
+            <h5>Olivia Turner</h5>
+            <div class="team-title">Founder & CEO</div>
+            <p>
+              Visionary leader with 20+ years in technology, passionate about
+              building high-performing teams and driving customer success
+              through innovation.
+            </p>
+            <div class="team-social">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+                ><i class="bi bi-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80"
+              alt="Michael Lee portrait"
+            />
+            <h5>Michael Lee</h5>
+            <div class="team-title">CTO</div>
+            <p>
+              Technology strategist and architect, leading Dyashin's technical
+              vision and ensuring delivery of robust, scalable solutions.
+            </p>
+            <div class="team-social">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+                ><i class="bi bi-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80"
+              alt="Lucas Meyer portrait"
+            />
+            <h5>Lucas Meyer</h5>
+            <div class="team-title">Lead Developer</div>
+            <p>
+              Full-stack developer specializing in scalable, user-friendly web
+              and mobile applications with a focus on performance and security.
+            </p>
+            <div class="team-social">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+                ><i class="bi bi-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
+              alt="Priya Sharma portrait"
+            />
+            <h5>Priya Sharma</h5>
+            <div class="team-title">Product Manager</div>
+            <p>
+              Experienced product manager with a passion for user experience and
+              delivering products that delight customers and drive business
+              growth.
+            </p>
+            <div class="team-social">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+                ><i class="bi bi-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80"
+              alt="John Carter"
+            />
+            <h5>John Carter</h5>
+            <div class="team-title">UI/UX Designer</div>
+            <p>
+              Creative UI/UX designer dedicated to crafting intuitive, beautiful
+              interfaces and seamless user experiences for web and mobile
+              platforms.
+            </p>
+            <div class="team-social">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                aria-label="LinkedIn"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+                ><i class="bi bi-twitter"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials Section -->
+    <hr class="section-divider" />
+    <section class="testimonials-section" id="testimonials">
+      <div class="container">
+        <h2>What Our Clients Say</h2>
+        <div
+          style="
+            height: 3px;
+            width: 60px;
+            background: #007bff;
+            border-radius: 2px;
+            margin: 0 auto 1.5rem auto;
+          "
+        ></div>
+        <div
+          class="mb-3"
+          style="color: #007bff; font-weight: 600; letter-spacing: 0.04em"
+        >
+          Trusted by Industry Leaders
+        </div>
+        <div
+          id="testimonialCarousel"
+          class="carousel slide testimonial-carousel"
+          data-bs-ride="carousel"
+          data-bs-interval="6000"
+          data-bs-pause="hover"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="testimonial-row">
+                <div class="testimonial-card">
+                  <span class="top-client-badge">Top Client</span>
+                  <span class="testimonial-quote-icon"
+                    ><i class="bi bi-quote"></i
+                  ></span>
+                  <img
+                    src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=crop&w=400&q=80"
+                    class="testimonial-img"
+                    alt="Olivia Turner portrait"
+                  />
+                  <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span
+                    ><span>★</span>
+                  </div>
+                  <div class="testimonial-quote">
+                    "Dyashin's expertise helped us launch our new SaaS product
+                    with confidence. Their support was world-class."
+                  </div>
+                  <div class="testimonial-meta">
+                    <img class="testimonial-logo" alt="Microsoft Logo" />
+                    <div>
+                      <span class="testimonial-name">Maya Patel</span>
+                      <span class="testimonial-location">Seattle, USA</span>
+                    </div>
+                  </div>
+                  <div class="testimonial-role">VP Engineering, Microsoft</div>
+                </div>
+                <div class="testimonial-card alt-bg">
+                  <span class="testimonial-quote-icon"
+                    ><i class="bi bi-quote"></i
+                  ></span>
+                  <img
+                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
+                    class="testimonial-img"
+                    alt="Priya Sharma portrait"
+                  />
+                  <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span
+                    ><span>★</span>
+                  </div>
+                  <div class="testimonial-quote">
+                    "We improved our workflow efficiency by 40% after Dyashin's
+                    digital transformation project."
+                  </div>
+                  <div class="testimonial-meta">
+                    <img class="testimonial-logo" alt="Netflix Logo" />
+                    <div>
+                      <span class="testimonial-name">Carlos Rivera</span>
+                      <span class="testimonial-location">Madrid, Spain</span>
+                    </div>
+                  </div>
+                  <div class="testimonial-role">IT Manager, Netflix</div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="testimonial-row">
+                <div class="testimonial-card">
+                  <span class="testimonial-quote-icon"
+                    ><i class="bi bi-quote"></i
+                  ></span>
+                  <img
+                    src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80"
+                    class="testimonial-img"
+                    alt="Lucas Meyer portrait"
+                  />
+                  <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span
+                    ><span>★</span>
+                  </div>
+                  <div class="testimonial-quote">
+                    "The Dyashin team was always available and delivered on
+                    every promise.
+                    <span
+                      class="read-more-link"
+                      onclick="this.previousSibling.textContent+=' Their technical support is the best we\'ve experienced.';this.style.display='none';"
+                      >Read More</span
+                    >"
+                  </div>
+                  <div class="testimonial-meta">
+                    <img class="testimonial-logo" alt="IBM Logo" />
+                    <div>
+                      <span class="testimonial-name">Sofia Martinez</span>
+                      <span class="testimonial-location"
+                        >Buenos Aires, Argentina</span
+                      >
+                    </div>
+                  </div>
+                  <div class="testimonial-role">Cloud Architect, IBM</div>
+                </div>
+                <div class="testimonial-card alt-bg">
+                  <span class="testimonial-quote-icon"
+                    ><i class="bi bi-quote"></i
+                  ></span>
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+                    class="testimonial-img"
+                    alt="Client 5"
+                  />
+                  <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span
+                    ><span>★</span>
+                  </div>
+                  <div class="testimonial-quote">
+                    "From strategy to execution, Dyashin's team delivered above
+                    and beyond. Communication was clear and proactive."
+                  </div>
+                  <div class="testimonial-meta">
+                    <img class="testimonial-logo" alt="Amazon Logo" />
+                    <div>
+                      <span class="testimonial-name">Michael Lee</span>
+                      <span class="testimonial-location">Singapore</span>
+                    </div>
+                  </div>
+                  <div class="testimonial-role">CTO, Amazon</div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="testimonial-row">
+                <div class="testimonial-card">
+                  <span class="testimonial-quote-icon"
+                    ><i class="bi bi-quote"></i
+                  ></span>
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+                    class="testimonial-img"
+                    alt="Client 5"
+                  />
+                  <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span
+                    ><span>★</span>
+                  </div>
+                  <div class="testimonial-quote">
+                    "We partnered with Dyashin for our mobile app launch. Their
+                    attention to detail and support was outstanding."
+                  </div>
+                  <div class="testimonial-meta">
+                    <img class="testimonial-logo" alt="Meta Logo" />
+                    <div>
+                      <span class="testimonial-name">Emily Chen</span>
+                      <span class="testimonial-location"
+                        >San Francisco, USA</span
+                      >
+                    </div>
+                  </div>
+                  <div class="testimonial-role">Product Lead, Meta</div>
+                </div>
+                <div class="testimonial-card alt-bg">
+                  <span class="testimonial-quote-icon"
+                    ><i class="bi bi-quote"></i
+                  ></span>
+                  <img
+                    src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+                    class="testimonial-img"
+                    alt="Client 6"
+                  />
+                  <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span
+                    ><span>★</span>
+                  </div>
+                  <div class="testimonial-quote">
+                    "Dyashin's automation solutions saved us hundreds of hours
+                    per month. The ROI was immediate."
+                  </div>
+                  <div class="testimonial-meta">
+                    <img class="testimonial-logo" alt="Google Logo" />
+                    <div>
+                      <span class="testimonial-name">David Kim</span>
+                      <span class="testimonial-location"
+                        >Seoul, South Korea</span
+                      >
+                    </div>
+                  </div>
+                  <div class="testimonial-role">
+                    Director of Operations, Google
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="testimonial-row">
+                <div
+                  class="testimonial-card"
+                  style="flex: 1 1 100%; max-width: 900px"
+                >
+                  <div class="testimonial-video">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/3fumBcKC6RE?rel=0&modestbranding=1&showinfo=0&autoplay=0"
+                      title="Client Testimonial Video"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                  <div class="testimonial-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span
+                    ><span>★</span>
+                  </div>
+                  <div class="testimonial-quote">
+                    "Video testimonial: Dyashin's partnership was a game-changer
+                    for our business. We recommend them to anyone looking for
+                    real results."
+                  </div>
+                  <div class="testimonial-meta">
+                    <img class="testimonial-logo" alt="Netflix Logo" />
+                    <div>
+                      <span class="testimonial-name">Alex Kim</span>
+                      <span class="testimonial-location">Los Angeles, USA</span>
+                    </div>
+                  </div>
+                  <div class="testimonial-role">CEO, Netflix</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+        <div class="testimonial-cta">
+          <a href="#contact" class="btn">Contact Us</a>
+        </div>
+      </div>
+    </section>
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+      <button class="close-btn" id="lightboxClose" aria-label="Close">
+        &times;
+      </button>
+      <img id="lightboxImg" src="" alt="Gallery Preview" />
+      <div
+        id="lightboxCaption"
+        style="
+          color: #fff;
+          font-size: 1.15rem;
+          font-weight: 600;
+          text-align: center;
+          margin-top: 1.2rem;
+        "
+      ></div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <hr class="section-divider" />
+    <section id="newsletter" class="newsletter-section-bg">
+      <button
+        id="newsletterDarkToggle"
+        style="
+          position: absolute;
+          right: 24px;
+          top: 24px;
+          z-index: 10;
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+        "
+        aria-label="Toggle dark mode"
+      >
+        <i class="bi bi-moon"></i>
+      </button>
+      <div class="container">
+        <div class="newsletter-card" style="position: relative">
+          <h2>Join Our Community</h2>
+          <span class="newsletter-divider"></span>
+          <div class="newsletter-subtitle">
+            Never miss an update from Dyashin
+          </div>
+          <ul class="newsletter-benefits">
+            <li>Exclusive offers and news</li>
+            <li>Early access to new features</li>
+            <li>No spam, ever</li>
+          </ul>
+          <div class="newsletter-testimonial">
+            "The Dyashin newsletter keeps me ahead of the curve. Highly
+            recommended!"
+          </div>
+          <div class="newsletter-form-area">
+            <div class="newsletter-progress" aria-label="Signup progress">
+              <div
+                class="newsletter-progress-bar"
+                id="newsletterProgressBar"
+                style="width: 50%"
+              ></div>
+            </div>
+            <button
+              id="newsletterPreviewBtn"
+              class="btn btn-link"
+              type="button"
+              style="
+                color: #007bff;
+                text-decoration: underline;
+                font-size: 1.01rem;
+                margin-bottom: 1.1rem;
+              "
+            >
+              See a sample newsletter
+            </button>
+            <div class="newsletter-floating-label">
+              <input
+                type="text"
+                id="newsletterName"
+                name="NAME"
+                placeholder=" "
+                required
+                aria-label="Your name"
+              />
+              <label for="newsletterName">Your name</label>
+            </div>
+            <div class="newsletter-floating-label">
+              <input
+                type="email"
+                id="newsletterEmail"
+                name="EMAIL"
+                placeholder=" "
+                required
+                aria-label="Your email address"
+              />
+              <label for="newsletterEmail">Your email address</label>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: center;
+                gap: 0.7rem;
+                align-items: center;
+              "
+            >
+              <button
+                id="newsletterBtnToggle"
+                class="btn btn-primary btn-animated"
+                type="submit"
+                aria-label="Get Updates"
+              >
+                Get Updates
+              </button>
+              <button
+                id="newsletterBtnAlt"
+                class="btn btn-primary btn-animated"
+                type="button"
+                style="display: none"
+                aria-label="Join Free"
+              >
+                Join Free
+              </button>
+            </div>
+            <div class="newsletter-checkbox">
+              <input
+                type="checkbox"
+                id="newsletterAgree"
+                required
+                aria-label="I agree to the privacy policy"
+              />
+              <label for="newsletterAgree" style="margin-bottom: 0"
+                >I agree to the
+                <a href="#" style="color: #007bff; text-decoration: underline"
+                  >privacy policy</a
+                ></label
+              >
+            </div>
+          </div>
+          <div class="newsletter-privacy">
+            We respect your privacy. No spam ever.
+          </div>
+          <div class="newsletter-social">
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"
+              ><i class="bi bi-twitter"></i
+            ></a>
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"
+              ><i class="bi bi-facebook"></i
+            ></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <hr class="section-divider" />
+    <section
+      id="contact"
+      class="contact-section fade-in-on-scroll"
+      aria-labelledby="contact-heading"
+      tabindex="-1"
+      style="
+        background: linear-gradient(
+          120deg,
+          #e3eafc 0%,
+          #f7fafd 100%,
+          #d9e2ec 100%
+        );
+        border-radius: 32px;
+        box-shadow: 0 8px 40px #00336618;
+        margin-bottom: 64px;
+        padding: 64px 0;
+        position: relative;
+        overflow: hidden;
+        font-family: 'Quicksand', 'Montserrat', Arial, sans-serif;
+      "
+    >
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2
+            id="contact-heading"
+            style="
+              font-weight: 800;
+              color: #003366;
+              font-size: 2.5rem;
+              letter-spacing: 0.04em;
+            "
+          >
+            Contact Us
+          </h2>
+          <div
+            style="
+              height: 3px;
+              width: 60px;
+              background: #007bff;
+              border-radius: 2px;
+              margin: 0.7rem auto 1.1rem auto;
+            "
+          ></div>
+          <div
+            style="
+              color: #007bff;
+              font-size: 1.18rem;
+              font-weight: 600;
+              max-width: 520px;
+              margin: 0 auto;
+            "
+          >
+            We'd love to hear from you! Reach out for support, business
+            inquiries, or just to say hello.
+          </div>
+        </div>
+        <div class="row justify-content-center align-items-stretch g-5">
+          <!-- Contact Info Card -->
+          <div class="col-lg-5 mb-4 mb-lg-0">
+            <div
+              class="card shadow p-4 h-100"
+              style="
+                border-radius: 22px;
+                background: rgba(255, 255, 255, 0.92);
+                border: 1.5px solid #007bff22;
+                box-shadow: 0 8px 32px #00336611;
+              "
+            >
+              <div class="d-flex align-items-center mb-4">
+                <img
+                  src="img/user1.jpg"
+                  alt="Founder"
+                  style="
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 2.5px solid #007bff;
+                    box-shadow: 0 2px 8px #00336622;
+                    margin-right: 1rem;
+                  "
+                />
+                <div>
+                  <div
+                    style="font-weight: 700; color: #003366; font-size: 1.13rem"
+                  >
+                    We're here to help!
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.98rem;
+                      color: #28a745;
+                      display: flex;
+                      align-items: center;
+                      gap: 0.4rem;
+                    "
+                  >
+                    <span
+                      style="
+                        display: inline-block;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background: #28a745;
+                        animation: pulseLive 1.2s infinite alternate;
+                      "
+                    ></span>
+                    Online now
+                  </div>
+                </div>
+              </div>
+              <ul
+                class="list-unstyled mb-4"
+                style="font-size: 1.08rem; color: #003366"
+              >
+                <li class="mb-2">
+                  <i class="bi bi-envelope" style="color: #007bff"></i>
+                  <a
+                    href="mailto:hello@ultimateexample.com"
+                    style="color: #007bff; text-decoration: underline"
+                    >hello@ultimateexample.com</a
+                  >
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-telephone" style="color: #007bff"></i>
+                  <a
+                    href="tel:+44 20 7946 0958"
+                    style="color: #007bff; text-decoration: underline"
+                    >+44 20 7946 0958</a
+                  >
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-whatsapp" style="color: #25d366"></i>
+                  <a
+                    href="https://wa.me/442079460958"
+                    target="_blank"
+                    style="color: #25d366; text-decoration: underline"
+                    >WhatsApp Chat</a
+                  >
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-telegram" style="color: #229ed9"></i>
+                  <a
+                    href="https://t.me/ultimateexample"
+                    target="_blank"
+                    style="color: #229ed9; text-decoration: underline"
+                    >Telegram Chat</a
+                  >
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-geo-alt" style="color: #007bff"></i> 221B
+                  Baker Street, London, UK
+                </li>
+                <li class="mb-2">
+                  <i class="bi bi-building" style="color: #007bff"></i> Canary
+                  Wharf, London
+                </li>
+              </ul>
+              <div class="d-flex gap-3 mb-4 flex-wrap justify-content-center">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  aria-label="LinkedIn"
+                  ><i
+                    class="bi bi-linkedin"
+                    style="font-size: 1.5rem; color: #007bff"
+                  ></i
+                ></a>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  aria-label="Facebook"
+                  ><i
+                    class="bi bi-facebook"
+                    style="font-size: 1.5rem; color: #007bff"
+                  ></i
+                ></a>
+                <a href="mailto:hello@ultimateexample.com" aria-label="Email"
+                  ><i
+                    class="bi bi-envelope"
+                    style="font-size: 1.5rem; color: #007bff"
+                  ></i
+                ></a>
+                <a
+                  href="https://instagram.com/ultimateexample"
+                  target="_blank"
+                  aria-label="Instagram"
+                  ><i
+                    class="bi bi-instagram"
+                    style="font-size: 1.5rem; color: #e1306c"
+                  ></i
+                ></a>
+                <a
+                  href="https://twitter.com/ultimateexample"
+                  target="_blank"
+                  aria-label="Twitter/X"
+                  ><i
+                    class="bi bi-twitter"
+                    style="font-size: 1.5rem; color: #1da1f2"
+                  ></i
+                ></a>
+              </div>
+              <div
+                style="
+                  font-size: 0.98rem;
+                  color: #007bff;
+                  font-weight: 600;
+                  text-align: center;
+                "
+              >
+                Mon-Fri: 9:00am – 7:00pm GMT
+              </div>
+              <div
+                class="mt-4"
+                style="
+                  border-radius: 12px;
+                  overflow: hidden;
+                  box-shadow: 0 2px 12px #00336611;
+                "
+              >
+                <iframe
+                  class="contact-map"
+                  title="Office Location"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-0.1585557,51.523767,-0.1555557,51.525767&layer=mapnik"
+                  width="100%"
+                  height="120"
+                  style="border: 0"
+                ></iframe>
+              </div>
+              <div class="text-center mt-4">
+                <img
+                  src="img/ultimate-qr.png"
+                  alt="Contact QR"
+                  style="
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 8px #00336611;
+                  "
+                  onerror="this.onerror=null;this.src='img/contact-qr.png';if(this.src.indexOf('contact-qr.png')>-1){this.src='img/logo1.png';}"
+                />
+                <div style="font-size: 0.97rem; color: #888">
+                  Scan to save our contact
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Contact Form Card -->
+          <div class="col-lg-7">
+            <div
+              class="card shadow p-5 h-100"
+              style="
+                border-radius: 22px;
+                background: #fff;
+                border: 1.5px solid #007bff22;
+                box-shadow: 0 8px 32px #00336611;
+              "
+            >
+              <form
+                id="contactForm"
+                autocomplete="off"
+                aria-label="Contact form"
+                novalidate
+              >
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="contactName"
+                        name="name"
+                        placeholder="Your Name"
+                        required
+                        aria-label="Your Name"
+                        style="
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                      />
+                      <label for="contactName">Your Name *</label>
+                      <span
+                        class="contact-error"
+                        id="contactNameError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="contactEmail"
+                        name="email"
+                        placeholder="Your Email"
+                        required
+                        aria-label="Your Email"
+                        style="
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                      />
+                      <label for="contactEmail">Your Email *</label>
+                      <span
+                        class="contact-error"
+                        id="contactEmailError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="contactPhone"
+                        name="phone"
+                        placeholder="Phone (required)"
+                        pattern="[0-9\-\+\s\(\)]{7,}"
+                        aria-label="Phone (required)"
+                        required
+                        style="
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                      />
+                      <label for="contactPhone">Phone *</label>
+                      <span
+                        class="contact-error"
+                        id="contactPhoneError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="contactDepartment"
+                        name="department"
+                        required
+                        aria-label="Department"
+                        style="
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                      >
+                        <option value="" disabled selected hidden>
+                          Select Department
+                        </option>
+                        <option value="Support">Support</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Billing">Billing</option>
+                        <option value="General">General Inquiry</option>
+                      </select>
+                      <label for="contactDepartment">Department *</label>
+                      <span
+                        class="contact-error"
+                        id="contactDepartmentError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="contactReason"
+                        name="reason"
+                        required
+                        aria-label="Inquiry Type"
+                        style="
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                      >
+                        <option value="" disabled selected hidden>
+                          Select a reason
+                        </option>
+                        <option value="Support">Support</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Feedback">Feedback</option>
+                        <option value="General">General Inquiry</option>
+                      </select>
+                      <label for="contactReason">Inquiry Type *</label>
+                      <span
+                        class="contact-error"
+                        id="contactReasonError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                      <select
+                        class="form-select"
+                        id="contactReferral"
+                        name="referral"
+                        aria-label="How did you hear about us?"
+                        style="
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                      >
+                        <option value="" disabled selected hidden>
+                          How did you hear about us?
+                        </option>
+                        <option value="Google">Google Search</option>
+                        <option value="Social Media">Social Media</option>
+                        <option value="Friend">Friend/Colleague</option>
+                        <option value="Event">Event/Conference</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <label for="contactReferral"
+                        >How did you hear about us?</label
+                      >
+                      <span
+                        class="contact-error"
+                        id="contactReferralError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-floating mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="contactSubject"
+                        name="subject"
+                        placeholder="Subject"
+                        required
+                        aria-label="Subject"
+                        style="
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                      />
+                      <label for="contactSubject">Subject *</label>
+                      <span
+                        class="contact-error"
+                        id="contactSubjectError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-floating mb-3">
+                      <textarea
+                        class="form-control"
+                        id="contactMessage"
+                        name="message"
+                        placeholder="Your Message"
+                        style="
+                          height: 100px;
+                          border-radius: 12px;
+                          border: 1.5px solid #007bff33;
+                        "
+                        required
+                        aria-label="Your Message"
+                      ></textarea>
+                      <label for="contactMessage">Your Message *</label>
+                      <span
+                        class="contact-error"
+                        id="contactMessageError"
+                        aria-live="polite"
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label
+                      for="contactFile"
+                      style="font-weight: 600; color: #003366"
+                      >Attach a file (optional):</label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="contactFile"
+                      name="file"
+                      aria-label="Attach a file"
+                      style="
+                        background: #f7fafd;
+                        border-radius: 12px;
+                        border: 1.5px solid #007bff33;
+                      "
+                      title="Attach a file (images, PDF, DOCX, up to 5MB)"
+                    />
+                    <span style="font-size: 0.97rem; color: #888"
+                      >Accepted: images, PDF, DOCX, up to 5MB.</span
+                    >
+                  </div>
+                  <div class="col-12 d-grid">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-lg"
+                      id="contactSubmitBtn"
+                      aria-label="Send Message"
+                      style="
+                        font-size: 1.18rem;
+                        border-radius: 32px;
+                        font-weight: 700;
+                        box-shadow: 0 4px 18px #007bff44;
+                        background: linear-gradient(
+                          90deg,
+                          #007bff 0%,
+                          #28a745 100%
+                        );
+                        border: none;
+                      "
+                    >
+                      Send Message
+                      <span class="contact-btn-icon"
+                        ><i class="bi bi-arrow-right"></i
+                      ></span>
+                    </button>
+                    <span
+                      class="contact-loading"
+                      id="contactLoading"
+                      style="display: none"
+                      aria-live="polite"
+                    ></span>
+                    <div
+                      class="newsletter-success"
+                      id="contactSuccess"
+                      style="
+                        display: none;
+                        color: #28a745;
+                        font-size: 1.2rem;
+                        animation: popIn 0.7s;
+                      "
+                    >
+                      🎉 Thank you for reaching out! Our team will contact you
+                      soon.
+                    </div>
+                    <div
+                      class="newsletter-success"
+                      id="contactError"
+                      style="
+                        display: none;
+                        color: #ff7e5f;
+                        font-size: 1.1rem;
+                        animation: popIn 0.7s;
+                      "
+                    >
+                      ❌ Oops! Something went wrong. Please check your details
+                      and try again, or contact us via email/Telegram.
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <!-- FAQ Accordion -->
+              <div
+                class="accordion mt-5"
+                id="contactFAQ"
+                aria-label="Frequently Asked Questions"
+              >
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faq1-heading">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#faq1"
+                      aria-expanded="false"
+                      aria-controls="faq1"
+                      tabindex="0"
+                    >
+                      How soon will I get a response?
+                    </button>
+                  </h2>
+                  <div
+                    id="faq1"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="faq1-heading"
+                    data-bs-parent="#contactFAQ"
+                  >
+                    <div class="accordion-body">
+                      We typically respond within 24 business hours.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faq2-heading">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#faq2"
+                      aria-expanded="false"
+                      aria-controls="faq2"
+                      tabindex="0"
+                    >
+                      Can I attach files to my inquiry?
+                    </button>
+                  </h2>
+                  <div
+                    id="faq2"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="faq2-heading"
+                    data-bs-parent="#contactFAQ"
+                  >
+                    <div class="accordion-body">
+                      Yes, you can attach files such as screenshots or documents
+                      using the file upload field above.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faq3-heading">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#faq3"
+                      aria-expanded="false"
+                      aria-controls="faq3"
+                      tabindex="0"
+                    >
+                      Is my information safe?
+                    </button>
+                  </h2>
+                  <div
+                    id="faq3"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="faq3-heading"
+                    data-bs-parent="#contactFAQ"
+                  >
+                    <div class="accordion-body">
+                      Absolutely! We never share your information and comply
+                      with all privacy regulations.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faq4-heading">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#faq4"
+                      aria-expanded="false"
+                      aria-controls="faq4"
+                      tabindex="0"
+                    >
+                      How do I know my message was sent?
+                    </button>
+                  </h2>
+                  <div
+                    id="faq4"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="faq4-heading"
+                    data-bs-parent="#contactFAQ"
+                  >
+                    <div class="accordion-body">
+                      You will see a success message and receive a confirmation
+                      email if you provided your address.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faq5-heading">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#faq5"
+                      aria-expanded="false"
+                      aria-controls="faq5"
+                      tabindex="0"
+                    >
+                      Can I contact you via WhatsApp?
+                    </button>
+                  </h2>
+                  <div
+                    id="faq5"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="faq5-heading"
+                    data-bs-parent="#contactFAQ"
+                  >
+                    <div class="accordion-body">
+                      Yes! Use the WhatsApp button above to chat with us
+                      instantly.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Contact Section -->
+
+    <!-- Footer -->
+    <hr class="section-divider" />
+    <footer class="footer-modern text-center text-lg-start">
+      <div class="container py-5">
+        <div class="row gy-4 align-items-center">
+          <!-- Company Info & Address -->
+          <div class="col-md-4 text-md-start mb-4 mb-md-0">
+            <div class="mb-2">
+              <img src="img/logo.png" alt="Dyashin Logo" style="height: 38px" />
+            </div>
+            <div style="font-weight: 600; color: #fff">
+              Dyashin Technosoft Pvt. Ltd.
+            </div>
+            <div style="color: #e3eafc; font-size: 1.01rem; margin-top: 0.5rem">
+              151 Irongable Dr, Middletown, DE 19709<br />
+              Kanakapura Rd, Bangalore, Karnataka
+            </div>
+            <div style="color: #e3eafc; font-size: 0.97rem; margin-top: 0.5rem">
+              <i class="bi bi-envelope"></i> info@dyashin.com<br />
+              <i class="bi bi-telephone"></i> +91 99999 99999
+            </div>
+          </div>
+          <!-- Quick Links -->
+          <div class="col-md-3 mb-4 mb-md-0">
+            <div class="footer-title">Quick Links</div>
+            <ul class="footer-links list-unstyled">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <!-- Newsletter Signup -->
+          <div class="col-md-5">
+            <div class="footer-title">Subscribe to our Newsletter</div>
+            <form
+              class="footer-newsletter-form"
+              id="footerNewsletterForm"
+              autocomplete="off"
+              novalidate
+            >
+              <div class="input-group mb-2">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="footerNewsletterEmail"
+                  placeholder="Your email address"
+                  aria-label="Email address"
+                  required
+                />
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                  aria-label="Subscribe"
+                >
+                  <i class="bi bi-send"></i>
+                </button>
+              </div>
+              <div
+                class="footer-newsletter-success"
+                id="footerNewsletterSuccess"
+                style="display: none"
+              >
+                Thank you for subscribing!
+              </div>
+            </form>
+            <div class="footer-social mt-3">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="Twitter"
+                ><i class="bi bi-twitter"></i
+              ></a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a
+                href="https://wa.me/919999999999"
+                target="_blank"
+                rel="noopener"
+                aria-label="WhatsApp"
+                ><i class="bi bi-whatsapp"></i
+              ></a>
+              <a href="mailto:info@dyashin.com" aria-label="Email"
+                ><i class="bi bi-envelope"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <hr class="footer-divider my-4" />
+        <div class="row">
+          <div
+            class="col text-center"
+            style="color: #e3eafc; font-size: 1.01rem"
+          >
+            © 2025 Dyashin Technosoft · Tech Forward Solutions for a Dynamic
+            World
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to Top">&#8679;</button>
+
+    <!-- Bootstrap and JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Navbar shrink on scroll
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 60) {
+          navbar.classList.add("shrink");
+        } else {
+          navbar.classList.remove("shrink");
+        }
+      });
+      // Smooth scroll for nav links
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (href.startsWith("#")) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      // Section entrance animation
+      function revealSections() {
+        document.querySelectorAll("section").forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 80) {
+            section.classList.add("visible");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealSections);
+      window.addEventListener("DOMContentLoaded", revealSections);
+      // Button ripple effect
+      document.querySelectorAll(".btn-primary").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          const circle = document.createElement("span");
+          circle.classList.add("ripple");
+          const rect = btn.getBoundingClientRect();
+          circle.style.left = e.clientX - rect.left + "px";
+          circle.style.top = e.clientY - rect.top + "px";
+          btn.appendChild(circle);
+          setTimeout(() => circle.remove(), 600);
+        });
+      });
+      // Gallery Lightbox with Caption
+      const lightboxModal = document.getElementById("lightboxModal");
+      const lightboxImg = document.getElementById("lightboxImg");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      document.querySelectorAll(".lightbox-trigger").forEach((item) => {
+        item.addEventListener("click", function () {
+          const img = item.querySelector("img");
+          lightboxImg.src = img.src;
+          lightboxCaption.textContent =
+            item.getAttribute("data-caption") || img.alt || "";
+          lightboxModal.classList.add("active");
+        });
+      });
+      document.getElementById("lightboxClose").onclick = function () {
+        lightboxModal.classList.remove("active");
+        lightboxImg.src = "";
+        lightboxCaption.textContent = "";
+      };
+      lightboxModal.addEventListener("click", function (e) {
+        if (e.target === lightboxModal) {
+          lightboxModal.classList.remove("active");
+          lightboxImg.src = "";
+          lightboxCaption.textContent = "";
+        }
+      });
+      // Back to Top Button
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          backToTop.style.display = "block";
+        } else {
+          backToTop.style.display = "none";
+        }
+      });
+      backToTop.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      // Newsletter Success Animation (front-end only, with confetti)
+      (function () {
+        const newsletterForm = document.getElementById("newsletterForm");
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", function (e) {
+            // Only show animation, don't actually submit
+            e.preventDefault();
+            const card = newsletterForm.closest(".newsletter-card");
+            const success = document.createElement("div");
+            success.className = "newsletter-success";
+            success.innerHTML =
+              '<span style="font-size:2rem;">&#10003;</span> Subscribed!';
+            card.appendChild(success);
+            launchConfetti(card);
+            setTimeout(() => success.remove(), 2500);
+            newsletterForm.reset();
+          });
+        }
+      })();
+      // Trigger fade-in animation on scroll (optional enhancement)
+      document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll(".fade-in");
+        elements.forEach((el, index) => {
+          el.style.animationDelay = `${0.3 * index}s`;
+          el.classList.add("fade-in");
+        });
+      });
+      // Animate service cards on scroll
+      function revealServiceCards() {
+        document.querySelectorAll(".service-card").forEach((card, idx) => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 60) {
+            setTimeout(() => card.classList.add("visible"), idx * 120);
+          }
+        });
+      }
+      window.addEventListener("scroll", revealServiceCards);
+      window.addEventListener("DOMContentLoaded", revealServiceCards);
+      // Animate team cards on scroll
+      function revealTeamCards() {
+        document.querySelectorAll(".team-card").forEach((card, idx) => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 60) {
+            setTimeout(() => card.classList.add("visible"), idx * 120);
+          }
+        });
+      }
+      window.addEventListener("scroll", revealTeamCards);
+      window.addEventListener("DOMContentLoaded", revealTeamCards);
+      // Confetti animation for newsletter subscribe
+      function launchConfetti(target) {
+        const confetti = document.createElement("canvas");
+        confetti.className = "confetti";
+        confetti.width = 320;
+        confetti.height = 120;
+        target.appendChild(confetti);
+        const ctx = confetti.getContext("2d");
+        const pieces = Array.from({ length: 32 }, () => ({
+          x: Math.random() * confetti.width,
+          y: (Math.random() * confetti.height) / 2,
+          r: 4 + Math.random() * 4,
+          c: `hsl(${Math.random() * 360},80%,60%)`,
+          v: 1 + Math.random() * 2,
+        }));
+        let frame = 0;
+        function draw() {
+          ctx.clearRect(0, 0, confetti.width, confetti.height);
+          pieces.forEach((p) => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+            ctx.fillStyle = p.c;
+            ctx.fill();
+            p.y += p.v;
+            p.x += Math.sin(frame / 8 + p.y / 18) * 2;
+          });
+          frame++;
+          if (frame < 60) requestAnimationFrame(draw);
+          else confetti.remove();
+        }
+        draw();
+      }
+      // Newsletter advanced JS
+      // 1. A/B Button Toggle
+      const btnToggle = document.getElementById("newsletterBtnToggle");
+      const btnAlt = document.getElementById("newsletterBtnAlt");
+      if (btnToggle && btnAlt) {
+        btnToggle.addEventListener("click", function (e) {
+          btnToggle.style.display = "none";
+          btnAlt.style.display = "";
+        });
+        btnAlt.addEventListener("click", function (e) {
+          btnAlt.style.display = "none";
+          btnToggle.style.display = "";
+        });
+      }
+      // 2. Animated Placeholder
+      const emailInput = document.getElementById("newsletterEmail");
+      const nameInput = document.getElementById("newsletterName");
+      if (emailInput) {
+        const emailExamples = [
+          "e.g. john@example.com",
+          "e.g. priya@company.com",
+          "e.g. you@dyashin.com",
+        ];
+        let idx = 0;
+        setInterval(() => {
+          emailInput.setAttribute("placeholder", emailExamples[idx]);
+          idx = (idx + 1) % emailExamples.length;
+        }, 2500);
+      }
+      if (nameInput) {
+        const nameExamples = ["e.g. John", "e.g. Priya", "e.g. Alex"];
+        let nidx = 0;
+        setInterval(() => {
+          nameInput.setAttribute("placeholder", nameExamples[nidx]);
+          nidx = (nidx + 1) % nameExamples.length;
+        }, 2500);
+      }
+      // 3. Floating labels handled by CSS
+      // 4. Progress bar (simulate step 1/2)
+      const progressBar = document.getElementById("newsletterProgressBar");
+      if (progressBar) {
+        // Simulate step 1/2, then 2/2 on focus email
+        emailInput &&
+          emailInput.addEventListener(
+            "focus",
+            () => (progressBar.style.width = "100%")
+          );
+        nameInput &&
+          nameInput.addEventListener(
+            "focus",
+            () => (progressBar.style.width = "50%")
+          );
+      }
+      // 5. Newsletter Preview Modal
+      document.getElementById("newsletterPreviewBtn").onclick = function () {
+        document.getElementById("newsletterPreviewModal").style.display =
+          "flex";
+      };
+      document
+        .querySelectorAll("#newsletterPreviewModal .close-modal")
+        .forEach(
+          (btn) =>
+            (btn.onclick = () =>
+              (document.getElementById("newsletterPreviewModal").style.display =
+                "none"))
+        );
+      // 6. Dark Mode Toggle
+      const darkToggle = document.getElementById("newsletterDarkToggle");
+      if (darkToggle) {
+        darkToggle.onclick = function () {
+          document
+            .querySelector(".newsletter-card")
+            .classList.toggle("newsletter-dark");
+        };
+      }
+      // 7. Animated subscribe button handled by CSS
+      // 8. GDPR/Consent Modal
+      const gdprModal = document.getElementById("newsletterGDPRModal");
+      const gdprCheckbox = document.getElementById("newsletterAgree");
+      if (gdprCheckbox) {
+        gdprCheckbox.addEventListener("click", function (e) {
+          if (!gdprCheckbox.checked) return;
+          gdprModal.style.display = "flex";
+          e.preventDefault();
+        });
+      }
+      document
+        .querySelectorAll(
+          "#newsletterGDPRModal .close-modal, #newsletterGDPRModal .btn"
+        )
+        .forEach(
+          (btn) => (btn.onclick = () => (gdprModal.style.display = "none"))
+        );
+      // 9. Success Modal on subscribe
+      (function () {
+        const newsletterForm = document.getElementById("newsletterForm");
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            document.getElementById("newsletterSuccessModal").style.display =
+              "flex";
+            newsletterForm.reset();
+            if (progressBar) progressBar.style.width = "50%";
+          });
+        }
+        document
+          .querySelectorAll(
+            "#newsletterSuccessModal .close-modal, #newsletterSuccessModal .btn"
+          )
+          .forEach(
+            (btn) =>
+              (btn.onclick = () =>
+                (document.getElementById(
+                  "newsletterSuccessModal"
+                ).style.display = "none"))
+          );
+      })();
+      // 10. Accessibility: ARIA labels, error messages, keyboard navigation handled above
+    </script>
+
+    <!-- Live Chat: Replace with your Tawk.to PROPERTY ID below -->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/YOUR_PROPERTY_ID/default";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!-- Newsletter Preview Modal -->
+    <div id="newsletterPreviewModal" class="modal-bg" style="display: none">
+      <div class="modal-content">
+        <button class="close-modal" aria-label="Close preview">&times;</button>
+        <h4>Sample Newsletter</h4>
+        <p style="color: #003366; font-weight: 600">
+          Welcome to the Dyashin newsletter!<br />Stay tuned for exclusive
+          offers, product updates, and tech insights delivered to your inbox.
+        </p>
+        <ul
+          style="
+            text-align: left;
+            margin: 1rem auto 0 auto;
+            max-width: 320px;
+            color: #007bff;
+            font-size: 1.01rem;
+          "
+        >
+          <li>🚀 Product launches</li>
+          <li>🎉 Special events</li>
+          <li>💡 Tech tips</li>
+        </ul>
+        <button
+          class="btn btn-primary"
+          onclick="document.getElementById('newsletterPreviewModal').style.display='none'"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+    <!-- GDPR Consent Modal -->
+    <div id="newsletterGDPRModal" class="modal-bg" style="display: none">
+      <div class="modal-content">
+        <button class="close-modal" aria-label="Close consent">&times;</button>
+        <h4>Privacy & Consent</h4>
+        <p style="color: #003366">
+          By subscribing, you agree to receive emails from Dyashin. We respect
+          your privacy and will never share your information. You can
+          unsubscribe at any time.
+        </p>
+        <button
+          class="btn btn-primary"
+          onclick="document.getElementById('newsletterGDPRModal').style.display='none'"
+        >
+          I Agree
+        </button>
+      </div>
+    </div>
+    <!-- Success Modal -->
+    <div id="newsletterSuccessModal" class="modal-bg" style="display: none">
+      <div class="modal-content">
+        <button class="close-modal" aria-label="Close success">&times;</button>
+        <h4>Thank you for subscribing!</h4>
+        <p style="color: #003366">
+          You're now part of the Dyashin community.<br />Check your inbox for a
+          welcome email and next steps.
+        </p>
+        <button
+          class="btn btn-primary"
+          onclick="document.getElementById('newsletterSuccessModal').style.display='none'"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+    <script>
+      // Fade-in animation for contact cards/maps
+      function revealContactCards() {
+        document.querySelectorAll(".fade-in-on-scroll").forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 80) {
+            card.classList.add("visible");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealContactCards);
+      window.addEventListener("DOMContentLoaded", revealContactCards);
+      // Contact form validation, loading, success modal
+      const contactForm = document.getElementById("contactForm");
+      const contactSuccess = document.getElementById("contactSuccess");
+      const contactSuccessModal = document.getElementById(
+        "contactSuccessModal"
+      );
+      const contactLoading = document.getElementById("contactLoading");
+      const contactSubmitBtn = document.getElementById("contactSubmitBtn");
+      function showError(id, msg) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = msg;
+      }
+      function clearErrors() {
+        [
+          "contactNameError",
+          "contactEmailError",
+          "contactPhoneError",
+          "contactReasonError",
+          "contactSubjectError",
+          "contactMessageError",
+          "contactCompanyError",
+          "contactReferralError",
+        ].forEach((id) => showError(id, ""));
+      }
+      // Real-time validation
+      if (contactForm) {
+        [
+          {
+            id: "contactName",
+            error: "contactNameError",
+            validate: (v) => !!v.trim(),
+            msg: "Name is required.",
+          },
+          {
+            id: "contactEmail",
+            error: "contactEmailError",
+            validate: (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v),
+            msg: "Valid email required.",
+          },
+          {
+            id: "contactPhone",
+            error: "contactPhoneError",
+            validate: (v) => !v || /^[0-9\-\+\s\(\)]{7,}$/.test(v),
+            msg: "Invalid phone number.",
+          },
+          {
+            id: "contactReason",
+            error: "contactReasonError",
+            validate: (v) => !!v,
+            msg: "Please select a reason.",
+          },
+          {
+            id: "contactSubject",
+            error: "contactSubjectError",
+            validate: (v) => !!v.trim(),
+            msg: "Subject is required.",
+          },
+          {
+            id: "contactMessage",
+            error: "contactMessageError",
+            validate: (v) => !!v.trim(),
+            msg: "Message is required.",
+          },
+          {
+            id: "contactCompany",
+            error: "contactCompanyError",
+            validate: (v) => true, // optional
+            msg: "",
+          },
+          {
+            id: "contactReferral",
+            error: "contactReferralError",
+            validate: (v) => true, // optional
+            msg: "",
+          },
+        ].forEach(({ id, error, validate, msg }) => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.addEventListener("input", function () {
+              if (!validate(el.value)) showError(error, msg);
+              else showError(error, "");
+            });
+          }
+        });
+      }
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          clearErrors();
+          let valid = true;
+          const name = contactForm.name.value.trim();
+          const email = contactForm.email.value.trim();
+          const phone = contactForm.phone.value.trim();
+          const reason = contactForm.reason.value;
+          const subject = contactForm.subject.value.trim();
+          const message = contactForm.message.value.trim();
+          if (!name) {
+            showError("contactNameError", "Name is required.");
+            valid = false;
+          }
+          if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+            showError("contactEmailError", "Valid email required.");
+            valid = false;
+          }
+          if (phone && !/^[0-9\-\+\s\(\)]{7,}$/.test(phone)) {
+            showError("contactPhoneError", "Invalid phone number.");
+            valid = false;
+          }
+          if (!reason) {
+            showError("contactReasonError", "Please select a reason.");
+            valid = false;
+          }
+          if (!subject) {
+            showError("contactSubjectError", "Subject is required.");
+            valid = false;
+          }
+          if (!message) {
+            showError("contactMessageError", "Message is required.");
+            valid = false;
+          }
+          if (!valid) return;
+          contactSubmitBtn.style.display = "none";
+          contactLoading.style.display = "inline-block";
+          setTimeout(() => {
+            contactLoading.style.display = "none";
+            contactSubmitBtn.style.display = "flex";
+            contactSuccess.style.display = "block";
+            contactForm.reset();
+            setTimeout(() => {
+              contactSuccess.style.display = "none";
+            }, 2000);
+          }, 1200);
+        });
+      }
+      // Keyboard navigation for FAQ accordion
+      document
+        .querySelectorAll("#contactFAQ .accordion-button")
+        .forEach((btn) => {
+          btn.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+              e.preventDefault();
+              const buttons = Array.from(
+                document.querySelectorAll("#contactFAQ .accordion-button")
+              );
+              let idx = buttons.indexOf(document.activeElement);
+              if (e.key === "ArrowDown") idx = (idx + 1) % buttons.length;
+              else idx = (idx - 1 + buttons.length) % buttons.length;
+              buttons[idx].focus();
+            }
+          });
+        });
+    </script>
+    <script>
+      // Typewriter effect for subtitle
+      document.addEventListener("DOMContentLoaded", function () {
+        const phrases = [
+          "Empowering Your Business with Cutting-Edge Tech Solutions.",
+          "Your Vision, Our Technology.",
+          "Innovate. Transform. Succeed.",
+          "Trusted by Global Leaders.",
+        ];
+        let i = 0,
+          j = 0,
+          isDeleting = false,
+          current = "",
+          el = document.getElementById("heroTypewriter");
+        function type() {
+          if (!el) return;
+          if (!isDeleting && j <= phrases[i].length) {
+            el.textContent = phrases[i].substring(0, j++);
+            setTimeout(type, 60);
+          } else if (isDeleting && j >= 0) {
+            el.textContent = phrases[i].substring(0, j--);
+            setTimeout(type, 30);
+          } else if (!isDeleting) {
+            isDeleting = true;
+            setTimeout(type, 1200);
+          } else {
+            isDeleting = false;
+            i = (i + 1) % phrases.length;
+            setTimeout(type, 400);
+          }
+        }
+        type();
+      });
+      // Animated stats
+      document.addEventListener("DOMContentLoaded", function () {
+        function animateStat(id, end, duration) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          let start = 0;
+          const step = Math.ceil(end / (duration / 30));
+          function update() {
+            start += step;
+            if (start >= end) {
+              el.textContent = end;
+            } else {
+              el.textContent = start;
+              setTimeout(update, 30);
+            }
+          }
+          update();
+        }
+        animateStat("statYears", 2, 800); // Example: 2 years
+        animateStat("statClients", 25, 1000); // Example: 25 clients
+        animateStat("statProjects", 40, 1200); // Example: 40 projects
+      });
+    </script>
+    <script>
+      // Footer newsletter signup (front-end only)
+      document
+        .getElementById("footerNewsletterForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          var email = document.getElementById("footerNewsletterEmail");
+          var success = document.getElementById("footerNewsletterSuccess");
+          if (email.value && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value)) {
+            success.style.display = "block";
+            email.value = "";
+            setTimeout(function () {
+              success.style.display = "none";
+            }, 2500);
+          } else {
+            email.classList.add("is-invalid");
+            setTimeout(function () {
+              email.classList.remove("is-invalid");
+            }, 1200);
+          }
+        });
+    </script>
+  </body>
+</html>
